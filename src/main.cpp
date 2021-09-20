@@ -2,24 +2,39 @@
 #include "../inc/common.hpp"
 #include "TimeUtil.hpp"
 
-class BasicShapes {
+class BasicShape {
 private:
     sf::RectangleShape shape;
 
-    int size;
-    int position;
-
-    sf::Vector2f playerMoveAmount;
-    float playerSpeed;
-    int speedMultiplier;
+    float speed;
+    float speedMultiplier;
 public:
-    BasicShapes();
+    BasicShape();
+
+    sf::RectangleShape& getShape();
+
+    float getSpeed();
+    float getSpeedMultiplier();
+
+    void setSpeed(float);
+    void setSpeedMultiplier(float);
 };
 
-BasicShapes::BasicShapes() {
-    playerSpeed = 100;
+BasicShape::BasicShape() {
+    shape.setSize(sf::Vector2f(32, 32));
+    shape.setPosition(sf::Vector2f(0, 0));
+
+    speed = 100;
     speedMultiplier = 1;
 }
+
+sf::RectangleShape& BasicShape::getShape() {return shape;}
+
+float BasicShape::getSpeed() {return speed;}
+float BasicShape::getSpeedMultiplier() {return speedMultiplier;}
+
+void BasicShape::setSpeed(float spd) {speed = spd;}
+void BasicShape::setSpeedMultiplier(float spdMlt) {speedMultiplier = spdMlt;}
 
 class Base {
 private:
@@ -27,7 +42,9 @@ private:
     float totalTime;
 
     sf::RenderWindow window;
-    sf::RectangleShape player;
+    BasicShape player;
+
+    sf::Vector2f playerMoveAmount;
 
     std::vector<sf::RectangleShape> collides;
 
@@ -51,7 +68,7 @@ Base::Base() {
     tu.setTime();
     totalTime = 0;
 
-    collides.push_back(sf::RectangleShape());
+    //collides.push_back(sf::RectangleShape());
 }
 
 void Base::createWindow() {
@@ -60,9 +77,9 @@ void Base::createWindow() {
 }
 
 void Base::createPlayer() {
-    player.setSize(sf::Vector2f(32, 32));
-    player.setPosition(sf::Vector2f(32, 32));
-    player.setFillColor(sf::Color::White);
+    player.getShape().setSize(sf::Vector2f(32, 32));
+    player.getShape().setPosition(sf::Vector2f(32, 32));
+    player.getShape().setFillColor(sf::Color::White);
 }
 
 bool Base::gameLoop() {
@@ -73,8 +90,10 @@ bool Base::gameLoop() {
 
     exit =
     checkControls();
-    //checkMoves();
+    checkMoves();
     drawWindow();
+
+    playerMoveAmount = sf::Vector2f(0, 0);
 
     return exit;
 }
@@ -90,16 +109,16 @@ bool Base::checkControls() {
 
     // Controls.
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        playerMoveAmount = sf::Vector2f(0, -calculateFrameStep());
+        playerMoveAmount += sf::Vector2f(0, -calculateFrameStep());
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        playerMoveAmount = sf::Vector2f(-calculateFrameStep(), 0);
+        playerMoveAmount += sf::Vector2f(-calculateFrameStep(), 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        playerMoveAmount = sf::Vector2f(0, calculateFrameStep());
+        playerMoveAmount += sf::Vector2f(0, calculateFrameStep());
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        playerMoveAmount = sf::Vector2f(calculateFrameStep(), 0);
+        playerMoveAmount += sf::Vector2f(calculateFrameStep(), 0);
     }
 
     //std::cout << totalTime << std::endl;
@@ -111,12 +130,12 @@ bool Base::checkControls() {
 }
 
 void Base::checkMoves() {
-
+    player.getShape().move(playerMoveAmount);
 }
 
 void Base::drawWindow() {
     window.clear(sf::Color::Black);
-    window.draw(player);
+    window.draw(player.getShape());
 
     //for(auto x : gridLines) {}
     //for(auto x : jigSawPieces) {}
@@ -124,7 +143,7 @@ void Base::drawWindow() {
     window.display();
 }
 
-float Base::calculateFrameStep() {return (playerSpeed * speedMultiplier) * totalTime;}
+float Base::calculateFrameStep() {return (player.getSpeed() * player.getSpeedMultiplier()) * totalTime;}
 
 int Base::getRandomInt(int x, int y) {
     std::random_device device;
