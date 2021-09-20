@@ -10,6 +10,7 @@ private:
     float speedMultiplier;
 public:
     BasicShape();
+    BasicShape(sf::Vector2f, sf::Vector2f, float, float, sf::Color);
 
     sf::RectangleShape& getShape();
 
@@ -26,6 +27,18 @@ BasicShape::BasicShape() {
 
     speed = 100;
     speedMultiplier = 1;
+
+    shape.setFillColor(sf::Color::White);
+}
+
+BasicShape::BasicShape(sf::Vector2f size, sf::Vector2f position, float spd, float spdMlt, sf::Color clr) {
+    shape.setSize(size);
+    shape.setPosition(position);
+
+    speed = spd;
+    speedMultiplier = spdMlt;
+
+    shape.setFillColor(clr);
 }
 
 sf::RectangleShape& BasicShape::getShape() {return shape;}
@@ -46,7 +59,7 @@ private:
 
     sf::Vector2f playerMoveAmount;
 
-    std::vector<sf::RectangleShape> collides;
+    std::vector<BasicShape> collides;
 
 public:
     Base();
@@ -68,7 +81,7 @@ Base::Base() {
     tu.setTime();
     totalTime = 0;
 
-    //collides.push_back(sf::RectangleShape());
+    collides.push_back(BasicShape(sf::Vector2f(32, 32), sf::Vector2f(256, 256), 100, 1, sf::Color::White));
 }
 
 void Base::createWindow() {
@@ -121,15 +134,34 @@ bool Base::checkControls() {
         playerMoveAmount += sf::Vector2f(calculateFrameStep(), 0);
     }
 
-    //std::cout << totalTime << std::endl;
-
-
     //if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
 
     return 0;
 }
 
 void Base::checkMoves() {
+    sf::RectangleShape tmp = player.getShape();
+    tmp.move(playerMoveAmount);
+
+    for(auto x : collides) {
+        if(playerMoveAmount.x != 0) {
+            if(tmp.getPosition().x >= x.getShape().getPosition().x/* + x.getShape().getSize().x - 1 */&& tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+                playerMoveAmount.x = 0;
+            }
+            if(tmp.getPosition().x <= x.getShape().getPosition().x && tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+                playerMoveAmount.x = 0;
+            }
+        }
+        if(playerMoveAmount.y != 0) {
+            if(tmp.getPosition().y >= x.getShape().getPosition().y/* + x.getShape().getSize().y - 1 */&& tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+                playerMoveAmount.y = 0;
+            }
+            if(tmp.getPosition().y <= x.getShape().getPosition().y && tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+                playerMoveAmount.y = 0;
+            }
+        }
+    }
+
     player.getShape().move(playerMoveAmount);
 }
 
@@ -137,7 +169,7 @@ void Base::drawWindow() {
     window.clear(sf::Color::Black);
     window.draw(player.getShape());
 
-    //for(auto x : gridLines) {}
+    for(auto x : collides) {window.draw(x.getShape());}
     //for(auto x : jigSawPieces) {}
 
     window.display();
