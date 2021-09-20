@@ -2,17 +2,34 @@
 #include "../inc/common.hpp"
 #include "TimeUtil.hpp"
 
+class BasicShapes {
+private:
+    sf::RectangleShape shape;
+
+    int size;
+    int position;
+
+    sf::Vector2f playerMoveAmount;
+    float playerSpeed;
+    int speedMultiplier;
+public:
+    BasicShapes();
+};
+
+BasicShapes::BasicShapes() {
+    playerSpeed = 100;
+    speedMultiplier = 1;
+}
+
 class Base {
 private:
     TimeUtil tu;
-    float totalTime = 0;
+    float totalTime;
 
     sf::RenderWindow window;
     sf::RectangleShape player;
 
-    sf::Vector2f playerMoveAmount;
-    float playerSpeed = 100;
-    int speedMultiplier = 1;
+    std::vector<sf::RectangleShape> collides;
 
 public:
     Base();
@@ -32,6 +49,9 @@ public:
 
 Base::Base() {
     tu.setTime();
+    totalTime = 0;
+
+    collides.push_back(sf::RectangleShape());
 }
 
 void Base::createWindow() {
@@ -88,6 +108,10 @@ bool Base::checkControls() {
     //if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
 
     return 0;
+}
+
+void Base::checkMoves() {
+
 }
 
 void Base::drawWindow() {
