@@ -40,7 +40,7 @@ trg = tmpTrg + trg # set target directory
 
 # build source file lists
 srcFiles = ['main.cpp']
-src = [Glob(tmpSrc + '/timeUtil/*.cpp')]
+src = [Glob(tmpSrc + '/basicUtils/*.cpp')]
 
 # add variantdir to srcFile strings
 for i in range(len(srcFiles)):

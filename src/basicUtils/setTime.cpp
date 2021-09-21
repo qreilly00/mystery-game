@@ -1,6 +1,6 @@
-#include "../TimeUtil.hpp"
+#include "../BasicUtils.hpp"
 
-void TimeUtil::setTime() {
+void BasicUtils::setTime() {
 	dt = clock.restart();
     //dtAsSeconds = dt.asMilliseconds();
 	dtAsSeconds = dt.asSeconds();
