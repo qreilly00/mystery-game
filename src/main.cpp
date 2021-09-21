@@ -70,6 +70,10 @@ public:
     bool gameLoop();
     bool checkControls();
     void checkMoves();
+
+    sf::Vector2f getRectCenter(sf::RectangleShape);
+    sf::Vector2f getRectDelta(sf::Vector2f, sf::Vector2f);
+
     void drawWindow();
 
     float calculateFrameStep();
@@ -81,7 +85,17 @@ Base::Base() {
     tu.setTime();
     totalTime = 0;
 
-    collides.push_back(BasicShape(sf::Vector2f(32, 32), sf::Vector2f(256, 256), 100, 1, sf::Color::White));
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(512, 512), 0, 1, sf::Color::White));
+    //collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(0, 192), 0, 1, sf::Color::White));
+    /*collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(0, 256), 0, 1, sf::Color::White));
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(0, 320), 0, 1, sf::Color::White));
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(0, 384), 0, 1, sf::Color::White));
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(0, 448), 0, 1, sf::Color::White));
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(64, 448), 0, 1, sf::Color::White));
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(128, 448), 0, 1, sf::Color::White));
+
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(128, 256), 0, 1, sf::Color::White));
+    collides.push_back(BasicShape(sf::Vector2f(64, 64), sf::Vector2f(128, 320), 0, 1, sf::Color::White));*/
 }
 
 void Base::createWindow() {
@@ -90,9 +104,9 @@ void Base::createWindow() {
 }
 
 void Base::createPlayer() {
-    player.getShape().setSize(sf::Vector2f(32, 32));
-    player.getShape().setPosition(sf::Vector2f(32, 32));
-    player.getShape().setFillColor(sf::Color::White);
+    player.getShape().setSize(sf::Vector2f(64, 64));
+    player.getShape().setPosition(sf::Vector2f(64, 32));
+    player.getShape().setFillColor(sf::Color::Blue);
 }
 
 bool Base::gameLoop() {
@@ -140,29 +154,102 @@ bool Base::checkControls() {
 }
 
 void Base::checkMoves() {
-    sf::RectangleShape tmp = player.getShape();
-    tmp.move(playerMoveAmount);
+    player.getShape().move(playerMoveAmount);
 
     for(auto x : collides) {
-        if(playerMoveAmount.x != 0) {
-            if(tmp.getPosition().x >= x.getShape().getPosition().x/* + x.getShape().getSize().x - 1 */&& tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
-                playerMoveAmount.x = 0;
+        sf::RectangleShape playerTmp = player.getShape();
+        sf::RectangleShape xTmp = x.getShape();
+
+        sf::Vector2f playerCenter = getRectCenter(playerTmp);
+        sf::Vector2f xCenter = getRectCenter(xTmp);
+
+        sf::Vector2f delta = getRectDelta(playerCenter, xCenter);
+
+        sf::Vector2f intersect = (sf::Vector2f(delta.x - ((playerTmp.getSize().x / 2) + (xTmp.getSize().x / 2)), delta.y - ((playerTmp.getSize().y / 2) + (xTmp.getSize().y / 2))));
+
+        //std::cout << "PlayerCenter: " << playerCenter.x << ", " << playerCenter.y << std::endl << "XCenter: " << xCenter.x << ", " << xCenter.y << std::endl << "Delta: " << delta.x << ", " << delta.y << std::endl << "Result: " << result.x << ", " << result.y << std::endl;
+
+        /*if(result.x < 0 && result.y < 0 ) {
+            if(result.x > result.y) {
+                player.getShape().move(-result.x, 0);
+            } else {
+                player.getShape().move(0, -result.y);
             }
-            if(tmp.getPosition().x <= x.getShape().getPosition().x && tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+        }*/
+
+        if(intersect.x < 0 && intersect.y < 0) {
+            if(intersect.x > intersect.y) {
+
+                if(delta.x < 0) {
+                    player.getShape().move(-intersect.x, 0);
+                } else {
+                    player.getShape().move(intersect.x, 0);
+                }
+            } else {
+
+                if(delta.y < 0) {
+                    player.getShape().move(0, -intersect.y);
+                } else {
+                    player.getShape().move(0, intersect.y);
+                }
+            }
+        }
+
+        //https://www.youtube.com/watch?v=l2iCYCLi6MU&ab_channel=HilzeVonck
+
+        /*float a = (getRectangleCenter(player.getShape()).x - getRectangleCenter(player.getShape()).x) - (player.getShape().getSize().x + x.getShape().getSize().x);
+        float b = (getRectangleCenter(player.getShape()).x - getRectangleCenter(player.getShape()).x) - (player.getShape().getSize().y + x.getShape().getSize().y);
+
+        if(a < 0 && getRectangleCenter(player.getShape()) - (player.getShape().getSize().x + x.getShape().getSize().x)) {
+
+        }*/
+    }
+}
+
+/*
+sf::RectangleShape tmp = player.getShape();
+tmp.move(playerMoveAmount);
+
+for(auto x : collides) {
+    if(tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+        if(playerMoveAmount.x != 0) {
+            if(player.getShape().getPosition().y + player.getShape().getSize().y >= x.getShape().getPosition().y && player.getShape().getPosition().y <= x.getShape().getPosition().y + player.getShape().getSize().y) {
                 playerMoveAmount.x = 0;
             }
         }
         if(playerMoveAmount.y != 0) {
-            if(tmp.getPosition().y >= x.getShape().getPosition().y/* + x.getShape().getSize().y - 1 */&& tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
-                playerMoveAmount.y = 0;
-            }
-            if(tmp.getPosition().y <= x.getShape().getPosition().y && tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+            if(player.getShape().getPosition().x + player.getShape().getSize().x >= x.getShape().getPosition().x && player.getShape().getPosition().x <= x.getShape().getPosition().x + player.getShape().getSize().x) {
                 playerMoveAmount.y = 0;
             }
         }
     }
+}
 
-    player.getShape().move(playerMoveAmount);
+player.getShape().move(playerMoveAmount);
+
+if(tmp.getGlobalBounds().intersects(x.getShape().getGlobalBounds())) {
+    if((player.getShape().getPosition().y >= x.getShape().getPosition().y + x.getShape().getSize().y || player.getShape().getPosition().y <= x.getShape().getPosition().y)
+        && (player.getShape().getPosition().x <= x.getShape().getPosition().x + x.getShape().getSize().x && player.getShape().getPosition().x >= x.getShape().getPosition().x - x.getShape().getSize().x)) {
+        playerMoveAmount.y = 0;
+    }
+    if((player.getShape().getPosition().x >= x.getShape().getPosition().x + x.getShape().getSize().x || player.getShape().getPosition().x <= x.getShape().getPosition().x)
+        && (player.getShape().getPosition().y <= x.getShape().getPosition().y + x.getShape().getSize().y && player.getShape().getPosition().y >= x.getShape().getPosition().y - x.getShape().getSize().y)) {
+        playerMoveAmount.x = 0;
+    }
+    //break;
+}
+*/
+
+sf::Vector2f Base::getRectCenter(sf::RectangleShape rect) {
+    return sf::Vector2f(rect.getPosition().x + (rect.getSize().x / 2), rect.getPosition().y + (rect.getSize().y / 2));
+}
+sf::Vector2f Base::getRectDelta(sf::Vector2f rectCenter1, sf::Vector2f rectCenter2) {
+    /*if(rectCenter1.x < rectCenter2.x && rectCenter1.y < rectCenter2.y) {
+        return sf::Vector2f(rectCenter1.x - rectCenter2.x, rectCenter1.y - rectCenter2.y);
+    } else {
+        return sf::Vector2f(rectCenter2.x - rectCenter1.x, rectCenter2.y - rectCenter1.y);
+    }*/
+    return sf::Vector2f(rectCenter1.x - rectCenter2.x, rectCenter1.y - rectCenter2.y);
 }
 
 void Base::drawWindow() {
