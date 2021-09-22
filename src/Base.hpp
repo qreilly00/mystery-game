@@ -15,12 +15,16 @@ private:
     float totalTime;
 
     sf::RenderWindow window;
-    Entity player;
+    sf::View view;
 
+    Entity player;
     std::vector<sf::FloatRect> playerBorders;
     sf::Vector2f playerMoveAmount;
 
+    int currentLevel;
+
     std::vector<BasicShape> collides;
+    std::vector<BasicShape> rooms;
 
 public:
 
@@ -30,6 +34,10 @@ public:
     // Init functions.
     void createWindow();
     void createPlayer();
+    void designLevel(int/*, int*/); // 1 = Rooms
+
+    // Required by designLevel().
+    void convertCoords(std::string, sf::Vector2f&);
 
     // Main Functions.
     bool gameLoop();

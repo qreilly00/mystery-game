@@ -6,8 +6,6 @@
 int main() {
 
     Base b;
-    b.createWindow();
-    b.createPlayer();
 
     bool exit = 0;
     while(exit == 0) {

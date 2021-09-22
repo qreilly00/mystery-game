@@ -18,6 +18,7 @@ public:
     int getRandomInt(int x, int y);
     sf::Vector2f getRectCenter(sf::RectangleShape);
     void setTime();
+    std::vector<std::string> getFileLines(std::string);
 
     // Required for time util.
     // Getter.

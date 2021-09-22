@@ -6,6 +6,8 @@ bool Base::gameLoop() {
 
     bool exit = 0;
 
+    //ut.getFileLines("../map-rooms-1");
+
     exit =
     checkControls();
     checkMoves();
