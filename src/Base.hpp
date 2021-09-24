@@ -24,7 +24,11 @@ private:
     int currentLevel;
 
     std::vector<BasicShape> collides;
+
     std::vector<BasicShape> rooms;
+    std::vector<BasicShape> corridorsHigher;
+    std::vector<BasicShape> corridorsMid;
+    std::vector<BasicShape> corridorsLower;
 
 public:
 
@@ -38,6 +42,7 @@ public:
 
     // Required by designLevel().
     void convertCoords(std::string, sf::Vector2f&);
+    void fillLevelArray(sf::Vector2f, sf::Vector2f, std::vector<std::string>, std::vector<BasicShape>&);
 
     // Main Functions.
     bool gameLoop();
