@@ -1,72 +1,38 @@
 #include "../Base.hpp"
 
 void Base::designLevel(int lvl/*, int designType*/) {
-    //
-    // Rooms.
-    //
-    std::vector<std::string> map;
 
-    sf::Vector2f startPosition;
-    sf::Vector2f startSize;
+    // Rooms, Corridors (Higher, Mid and Lower).
 
-    // Grab all lines from map-x-rooms.
-    map = ut.getFileLines("../map-" + std::to_string(lvl) + "-rooms");
+    std::vector<std::string> fileNames = {"-rooms", "-corridors-higher", "-corridors-mid", "-corridors-lower"};
 
-    // Get start position and size for map-x-rooms.
-    convertCoords(map[0], startPosition);
-    convertCoords(map[1], startSize);
+    for(int i = 0; i < fileNames.size(); i++) {
+        std::vector<std::string> map;
 
-    // Put all rooms into the room array.
-    fillLevelArray(startPosition, startSize, map, rooms);
+        sf::Vector2f startPosition;
+        sf::Vector2f startSize;
 
-    //
-    // Corridors higher.
-    //
+        // Grab all lines from map-x-rooms.
+        map = ut.getFileLines("../map-" + std::to_string(lvl) + fileNames[i]);
 
-    startPosition = sf::Vector2f(0, 0);
-    startSize = sf::Vector2f(0, 0);
+        // Get start position and size for map-x-rooms.
+        convertCoords(map[0], startPosition);
+        convertCoords(map[1], startSize);
 
-    // Grab all lines from map-x-corridors-higher.
-    map = ut.getFileLines("../map-" + std::to_string(lvl) + "-corridors-higher");
-
-    // Get start position and size for map-x-corridors-higher.
-    convertCoords(map[0], startPosition);
-    convertCoords(map[1], startSize);
-
-    // Put all higher corridors into the higher corridors array.
-    fillLevelArray(startPosition, startSize, map, corridorsHigher);
-
-    //
-    // Corridors mid.
-    //
-
-    startPosition = sf::Vector2f(0, 0);
-    startSize = sf::Vector2f(0, 0);
-
-    // Grab all lines from map-x-corridors-mid.
-    map = ut.getFileLines("../map-" + std::to_string(lvl) + "-corridors-mid");
-
-    // Get start position and size for map-x-corridors-mid.
-    convertCoords(map[0], startPosition);
-    convertCoords(map[1], startSize);
-
-    // Put all higher corridors into the mid corridors array.
-    fillLevelArray(startPosition, startSize, map, corridorsMid);
-
-    //
-    // Corridors lower.
-    //
-
-    startPosition = sf::Vector2f(0, 0);
-    startSize = sf::Vector2f(0, 0);
-
-    // Grab all lines from map-x-corridors-lower.
-    map = ut.getFileLines("../map-" + std::to_string(lvl) + "-corridors-lower");
-
-    // Get start position and size for map-x-corridors-lower.
-    convertCoords(map[0], startPosition);
-    convertCoords(map[1], startSize);
-
-    // Put all higher corridors into the lower corridors array.
-    fillLevelArray(startPosition, startSize, map, corridorsLower);
+        // Put all rooms into the room array.
+        switch(i) {
+            case 0:
+                fillLevelArray(startPosition, startSize, map, rooms);
+                break;
+            case 1:
+                fillLevelArray(startPosition, startSize, map, corridorsHigher);
+                break;
+            case 2:
+                fillLevelArray(startPosition, startSize, map, corridorsMid);
+                break;
+            case 3:
+                fillLevelArray(startPosition, startSize, map, corridorsLower);
+                break;
+        }
+    }
 }
