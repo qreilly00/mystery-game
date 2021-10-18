@@ -8,7 +8,9 @@ void Base::fillLevelArray(sf::Vector2f startPosition, sf::Vector2f startSize, st
     for(int i = 2; i < map.size(); i++) {
         for(int j = 0; j < map[i].size(); j++) {
             if(map[i][j] == '1') {
-                levelArray.push_back(BasicShape(startSize, currentRoomCoords, 0, 1, sf::Color::White));
+                levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, 1));
+            } else if(map[i][j] == '2') {
+                levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, 2));
             }
 
             currentRoomCoords.x += startSize.x;

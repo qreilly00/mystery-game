@@ -35,4 +35,10 @@ void Base::designLevel(int lvl/*, int designType*/) {
                 break;
         }
     }
+
+    /*for(auto x : rooms) {
+        if(x.getShape().getSize()) {
+
+        }
+    }*/
 }

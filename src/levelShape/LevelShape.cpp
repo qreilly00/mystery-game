@@ -1,6 +1,6 @@
-#include "../Entity.hpp"
+#include "../LevelShape.hpp"
 
-Entity::Entity() {
+LevelShape::LevelShape() {
     // A basic property setup.
     shape.setSize(sf::Vector2f(32, 32));
     shape.setPosition(sf::Vector2f(0, 0));
@@ -9,11 +9,11 @@ Entity::Entity() {
 
     isColidable = 0;
 
-    speed = 100;
-    speedMultiplier = 1;
+    level = 0;
+    stage = 0;
 }
 
-Entity::Entity(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, float spd, float spdMlt) {
+LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, int lvl, int stg) {
     // A basic property setup, tailored for a specific purpose.
     shape.setSize(size);
     shape.setPosition(position);
@@ -22,6 +22,6 @@ Entity::Entity(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isC
 
     isColidable = isCol;
 
-    speed = spd;
-    speedMultiplier = spdMlt;
+    level = lvl;
+    stage = stg;
 }

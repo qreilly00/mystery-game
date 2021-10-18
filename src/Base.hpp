@@ -5,6 +5,7 @@
 
 #include "Entity.hpp"
 #include "BasicShape.hpp"
+#include "LevelShape.hpp"
 #include "BasicUtils.hpp"
 
 

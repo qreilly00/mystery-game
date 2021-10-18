@@ -14,7 +14,7 @@ private:
 public:
     // Init class.
     Entity();
-    Entity(sf::Vector2f size, sf::Vector2f position, float spd, float spdMlt, sf::Color clr);
+    Entity(sf::Vector2f, sf::Vector2f, sf::Color, bool, float, float);
 
     // Property get utils.
     float getSpeed();
