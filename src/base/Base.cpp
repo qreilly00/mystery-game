@@ -6,6 +6,7 @@ Base::Base() {
     playerBorders.resize(4);
 
     currentLevel = 1;
+    currentStage = 1;
 
     createWindow();
     createPlayer();

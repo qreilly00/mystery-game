@@ -23,6 +23,14 @@ bool Base::checkControls() {
         playerMoveAmount += sf::Vector2f(calculateFrameStep(), 0);
     }
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+        if(currentStage == 2) {
+            currentStage = 1;
+        } else {
+            currentStage = 2;
+        }
+    }
+
     //if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
 
     return 0;

@@ -7,11 +7,25 @@ void Base::drawWindow() {
     window.clear(sf::Color::Black);
 
     for(auto x : collides) {window.draw(x.getShape());}
-    for(auto x : rooms) {window.draw(x.getShape());}
-    for(auto x : corridorsHigher) {window.draw(x.getShape());}
+
+    //std::cout << rooms[0].getStage();
+
+    for(auto x : rooms) {
+        if(x.getStage() == currentStage) {
+            window.draw(x.getShape());
+        }
+    }
+
+    for(auto x : corridors) {
+        if(x.getStage() == currentStage) {
+            window.draw(x.getShape());
+        }
+    }
+
+    /*for(auto x : corridorsHigher) {window.draw(x.getShape());}
     for(auto x : corridorsMid) {window.draw(x.getShape());}
     for(auto x : corridorsLower) {window.draw(x.getShape());}
-    //for(auto x : jigSawPieces) {}
+    //for(auto x : jigSawPieces) {}*/
 
     window.draw(player.getShape());
 
