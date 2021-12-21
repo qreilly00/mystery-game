@@ -29,6 +29,7 @@ private:
 
     std::vector<LevelShape> rooms;
     std::vector<LevelShape> corridors;
+    std::vector<LevelShape> corridorWalls;
     /*std::vector<LevelShape> corridorsHigher;
     std::vector<LevelShape> corridorsMid;
     std::vector<LevelShape> corridorsLower;*/
@@ -46,6 +47,7 @@ public:
     // Required by designLevel().
     void convertCoords(std::string, sf::Vector2f&);
     void fillLevelArray(sf::Vector2f, sf::Vector2f, std::vector<std::string>, std::vector<LevelShape>&);
+    void createCorridorWalls();
 
     // Main Functions.
     bool gameLoop();

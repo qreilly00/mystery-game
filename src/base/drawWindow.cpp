@@ -22,6 +22,12 @@ void Base::drawWindow() {
         }
     }
 
+    for(auto x : corridorWalls) {
+        if(x.getStage() == currentStage) {
+            window.draw(x.getShape());
+        }
+    }
+
     /*for(auto x : corridorsHigher) {window.draw(x.getShape());}
     for(auto x : corridorsMid) {window.draw(x.getShape());}
     for(auto x : corridorsLower) {window.draw(x.getShape());}

@@ -26,6 +26,7 @@ void Base::designLevel(int lvl/*, int designType*/) {
                 break;
             case 1:
                 fillLevelArray(startPosition, startSize, map, corridors/*corridorsHigher*/);
+                createCorridorWalls();
                 break;
             /*case 2:
                 fillLevelArray(startPosition, startSize, map, corridorsMid);
