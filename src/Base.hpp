@@ -48,6 +48,7 @@ public:
     void convertCoords(std::string, sf::Vector2f&);
     void fillLevelArray(sf::Vector2f, sf::Vector2f, std::vector<std::string>, std::vector<LevelShape>&);
     void createCorridorWalls();
+    void addCollides(std::vector<LevelShape>&);
 
     // Main Functions.
     bool gameLoop();

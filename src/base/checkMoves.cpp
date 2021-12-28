@@ -10,34 +10,42 @@ void Base::checkMoves() {
         float playerTopDistance = (x.getShape().getPosition().y + x.getShape().getSize().y) - player.getShape().getPosition().y;
         float playerBottomDistance = player.getShape().getPosition().y + player.getShape().getSize().y - (x.getShape().getPosition().y);
 
-        // While moving left, right, top and bottom.
+        // While moving left, right, up and down.
         if(playerMoveAmount.x < 0 && playerBorders[0].intersects(x.getShape().getGlobalBounds())) {
-            if(playerMoveAmount.x > (playerLeftDistance)) {
+            //std::cout << playerLeftDistance << std::endl;
+            playerMoveAmount.x = playerLeftDistance;
+            /*if(playerMoveAmount.x > (playerLeftDistance)) {
                 playerMoveAmount.x = playerLeftDistance;
             } else {
                 playerMoveAmount.x = 0;
-            }
+            }*/
         }
         if(playerMoveAmount.x > 0 && playerBorders[1].intersects(x.getShape().getGlobalBounds())) {
-            if(-playerMoveAmount.x > (playerRightDistance)) {
+            //std::cout << -playerRightDistance << std::endl;
+            playerMoveAmount.x = -playerRightDistance;
+            /*if(-playerMoveAmount.x > (playerRightDistance)) {
                 playerMoveAmount.x = -playerRightDistance;
             } else {
                 playerMoveAmount.x = 0;
-            }
+            }*/
         }
         if(playerMoveAmount.y < 0 && playerBorders[2].intersects(x.getShape().getGlobalBounds())) {
-            if(playerMoveAmount.y > (playerTopDistance)) {
+            //std::cout << playerTopDistance << std::endl;
+            playerMoveAmount.y = playerTopDistance;
+            /*if(playerMoveAmount.y > (playerTopDistance)) {
                 playerMoveAmount.y = playerTopDistance;
             } else {
                 playerMoveAmount.y = 0;
-            }
+            }*/
         }
         if(playerMoveAmount.y > 0 && playerBorders[3].intersects(x.getShape().getGlobalBounds())) {
-            if(-playerMoveAmount.y > (playerBottomDistance)) {
+            //std::cout << -playerBottomDistance << std::endl;
+            playerMoveAmount.y = -playerBottomDistance;
+            /*if(-playerMoveAmount.y > (playerBottomDistance)) {
                 playerMoveAmount.y = -playerBottomDistance;
             } else {
                 playerMoveAmount.y = 0;
-            }
+            }*/
         }
     }
 
