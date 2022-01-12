@@ -1,8 +1,10 @@
 #include "../Base.hpp"
 
 void Base::createCorridorWalls() {
+
     for(auto x : corridors) {
         for(int i = 0; i < corridors.size(); i++) {
+            // Checks for a corridor piece above or below the current piece.
             if( // Vertical Corridor Walls
                 x.getShape().getPosition().x == corridors[i].getShape().getPosition().x
                 && x.getShape().getPosition().y == corridors[i].getShape().getPosition().y + corridors[i].getShape().getSize().y

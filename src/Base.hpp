@@ -25,9 +25,12 @@ private:
     int currentLevel;
     int currentStage;
 
-    std::vector<BasicShape> collides;
+    sf::Vector2f playerStartPosition;
+
+    std::vector<LevelShape> collides;
 
     std::vector<LevelShape> rooms;
+    std::vector<LevelShape> roomWalls;
     std::vector<LevelShape> corridors;
     std::vector<LevelShape> corridorWalls;
     /*std::vector<LevelShape> corridorsHigher;
@@ -48,6 +51,7 @@ public:
     void convertCoords(std::string, sf::Vector2f&);
     void fillLevelArray(sf::Vector2f, sf::Vector2f, std::vector<std::string>, std::vector<LevelShape>&);
     void createCorridorWalls();
+    void createRoomWalls();
     void addCollides(std::vector<LevelShape>&);
 
     // Main Functions.

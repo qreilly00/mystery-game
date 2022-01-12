@@ -4,7 +4,7 @@ void Base::drawWindow() {
     view.setCenter(ut.getRectCenter(player.getShape()));
     window.setView(view);
 
-    window.clear(sf::Color::Black);
+    window.clear(sf::Color::Green);
 
     for(auto x : collides) {window.draw(x.getShape());}
 
@@ -23,6 +23,12 @@ void Base::drawWindow() {
     }
 
     for(auto x : corridorWalls) {
+        if(x.getStage() == currentStage) {
+            window.draw(x.getShape());
+        }
+    }
+
+    for(auto x : roomWalls) {
         if(x.getStage() == currentStage) {
             window.draw(x.getShape());
         }

@@ -23,6 +23,8 @@ void Base::designLevel(int lvl/*, int designType*/) {
         switch(i) {
             case 0:
                 fillLevelArray(startPosition, startSize, map, rooms);
+                createRoomWalls();
+                addCollides(roomWalls);
                 break;
             case 1:
                 fillLevelArray(startPosition, startSize, map, corridors/*corridorsHigher*/);

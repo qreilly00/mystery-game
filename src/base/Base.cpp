@@ -12,6 +12,8 @@ Base::Base() {
     createPlayer();
     designLevel(currentLevel);
 
+    player.getShape().setPosition(playerStartPosition);
+
     view.setSize(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
 
     // Example.
