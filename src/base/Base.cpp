@@ -8,6 +8,8 @@ Base::Base() {
     currentLevel = 1;
     currentStage = 1;
 
+    roomWallWidth = 8;
+
     createWindow();
     createPlayer();
     designLevel(currentLevel);

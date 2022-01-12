@@ -21,11 +21,12 @@ private:
     Entity player;
     std::vector<sf::FloatRect> playerBorders;
     sf::Vector2f playerMoveAmount;
+    sf::Vector2f playerStartPosition;
 
     int currentLevel;
     int currentStage;
 
-    sf::Vector2f playerStartPosition;
+    int roomWallWidth;
 
     std::vector<LevelShape> collides;
 
@@ -52,6 +53,7 @@ public:
     void fillLevelArray(sf::Vector2f, sf::Vector2f, std::vector<std::string>, std::vector<LevelShape>&);
     void createCorridorWalls();
     void createRoomWalls();
+    void fixRoomToCorridorWalls();
     void addCollides(std::vector<LevelShape>&);
 
     // Main Functions.

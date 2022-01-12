@@ -1,27 +1,18 @@
 #include "../Base.hpp"
 
-void Base::createRoomWalls() {
+void Base::fixRoomToCorridorWalls() {
     int borderSize = roomWallWidth;
-    for(auto x : rooms) {
-        int isRoomUp = 0;
-        int isRoomDown = 0;
-        int isRoomLeft = 0;
-        int isRoomRight = 0;
+    for(auto x : roomWalls) {
 
-        int isCorridorUp = 0;
-        int isCorridorDown = 0;
-        int isCorridorLeft = 0;
-        int isCorridorRight = 0;
+        for(int i = 0; i < corridorWalls.size(); i++) {
 
-        for(int i = 0; i < rooms.size(); i++) {
-
-            if( // Room up?
-                x.getShape().getPosition().x == rooms[i].getShape().getPosition().x
-                && rooms[i].getShape().getPosition().y == x.getShape().getPosition().y - rooms[i].getShape().getSize().y
-                && x.getStage() == rooms[i].getStage()
+            if( // Room down?
+                x.getShape().getPosition() == corridorWalls[i].getShape().getPosition()
+                //&& x.getStage() == corridorWalls[i].getStage()
             ) {
-                isRoomUp++;
-            } if( // Room down?
+                x.getShape().setSize(sf::Vector2f(32/*corridorWalls[i].getShape().getSize().x*/, borderSize + 32));
+                //std::cout << "Test";
+            } /*if( // Room down?
                 x.getShape().getPosition().x == rooms[i].getShape().getPosition().x
                 && rooms[i].getShape().getPosition().y == x.getShape().getPosition().y + rooms[i].getShape().getSize().y
                 && x.getStage() == rooms[i].getStage()
@@ -39,11 +30,11 @@ void Base::createRoomWalls() {
                 && x.getStage() == rooms[i].getStage()
             ) {
                 isRoomRight++;
-            }
+            }*/
             //std::cout << isRoomUp << std::endl;
         }
 
-        if(isRoomUp == 0) {
+        /*if(isRoomUp == 0) {
             roomWalls.push_back(LevelShape(sf::Vector2f(x.getShape().getSize().x, borderSize), sf::Vector2f(x.getShape().getPosition().x, x.getShape().getPosition().y - borderSize), sf::Color::Black, 1, x.getLevel(), x.getStage()));
         } if(isRoomDown == 0) {
             roomWalls.push_back(LevelShape(sf::Vector2f(x.getShape().getSize().x, borderSize), sf::Vector2f(x.getShape().getPosition().x, x.getShape().getPosition().y + x.getShape().getSize().y), sf::Color::Black, 1, x.getLevel(), x.getStage()));
@@ -51,6 +42,6 @@ void Base::createRoomWalls() {
             roomWalls.push_back(LevelShape(sf::Vector2f(borderSize, x.getShape().getSize().y), sf::Vector2f(x.getShape().getPosition().x - borderSize, x.getShape().getPosition().y), sf::Color::Black, 1, x.getLevel(), x.getStage()));
         } if(isRoomRight == 0) {
             roomWalls.push_back(LevelShape(sf::Vector2f(borderSize, x.getShape().getSize().y), sf::Vector2f(x.getShape().getPosition().x + x.getShape().getSize().x, x.getShape().getPosition().y), sf::Color::Black, 1, x.getLevel(), x.getStage()));
-        }
+        }*/
     }
 }
