@@ -10,10 +10,11 @@ void Base::fillLevelArray(sf::Vector2f startPosition, sf::Vector2f startSize, st
             if(map[i][j] == '*') {
                 levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, 1));
                 playerStartPosition = currentRoomCoords;
-            } else if(map[i][j] == '1') {
-                levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, 1));
-            } else if(map[i][j] == '2') {
-                levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, 2));
+            } else if(map[i][j] >= 'b' && map[i][j] <= 'i') {
+                levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, map[i][j] - 'a'));
+                levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, (map[i][j] - 'a') + 1));
+            } else if(map[i][j] > '0' && map[i][j] <= '9') {
+                levelArray.push_back(LevelShape(startSize, currentRoomCoords, sf::Color::White, 0, currentLevel, map[i][j] - '0'));
             }
 
             currentRoomCoords.x += startSize.x;

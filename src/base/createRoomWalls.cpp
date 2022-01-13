@@ -8,11 +8,6 @@ void Base::createRoomWalls() {
         int isRoomLeft = 0;
         int isRoomRight = 0;
 
-        int isCorridorUp = 0;
-        int isCorridorDown = 0;
-        int isCorridorLeft = 0;
-        int isCorridorRight = 0;
-
         for(int i = 0; i < rooms.size(); i++) {
 
             if( // Room up?
