@@ -20,11 +20,11 @@ void Base::drawWindow() {
         }
     }
 
-    /*for(auto x : corridorWalls) {
+    for(auto x : corridorWalls) {
         if(x.getStage() == currentStage) {
             window.draw(x.getShape());
         }
-    }*/
+    }
 
     for(auto x : roomWalls) {
         if(x.getStage() == currentStage) {

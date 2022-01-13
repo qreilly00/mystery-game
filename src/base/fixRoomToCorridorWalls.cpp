@@ -2,15 +2,19 @@
 
 void Base::fixRoomToCorridorWalls() {
     int borderSize = roomWallWidth;
-    for(auto x : roomWalls) {
 
-        for(int i = 0; i < corridorWalls.size(); i++) {
+    //std::cout << borderSize;
+    for(int i = 0; i < roomWalls.size(); i++) {
+
+        for(int j = 0; j < corridors.size(); j++) {
 
             if( // Room down?
-                x.getShape().getPosition() == corridorWalls[i].getShape().getPosition()
-                //&& x.getStage() == corridorWalls[i].getStage()
+                roomWalls[i].getShape().getPosition().x == corridors[j].getShape().getPosition().x
+                && roomWalls[i].getShape().getPosition().y == corridors[j].getShape().getPosition().y
+                && roomWalls[i].getStage() == corridors[j].getStage()
             ) {
-                x.getShape().setSize(sf::Vector2f(32/*corridorWalls[i].getShape().getSize().x*/, borderSize + 32));
+                roomWalls[i].getShape().setSize(sf::Vector2f(32/*corridorWalls[j].getShape().getSize().x*/, /*borderSize + */32));
+                //std::cout << x.getShape().getSize().x << " " << x.getShape().getSize().x << std::endl;
                 //std::cout << "Test";
             } /*if( // Room down?
                 x.getShape().getPosition().x == rooms[i].getShape().getPosition().x

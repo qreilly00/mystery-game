@@ -24,12 +24,13 @@ void Base::designLevel(int lvl/*, int designType*/) {
             case 0:
                 fillLevelArray(startPosition, startSize, map, rooms);
                 createRoomWalls();
-
+                /*fixRoomToCorridorWalls();
+                addCollides(roomWalls);*/
                 break;
             case 1:
                 fillLevelArray(startPosition, startSize, map, corridors/*corridorsHigher*/);
                 createCorridorWalls();
-
+                //addCollides(corridorWalls);
                 break;
             /*case 2:
                 fillLevelArray(startPosition, startSize, map, corridorsMid);
@@ -39,7 +40,9 @@ void Base::designLevel(int lvl/*, int designType*/) {
                 break;*/
         }
     }
-    fixRoomToCorridorWalls();addCollides(roomWalls);addCollides(corridorWalls);
+    fixRoomToCorridorWalls();
+    addCollides(roomWalls);
+    addCollides(corridorWalls);
 
     /*for(auto x : rooms) {
         if(x.getShape().getSize()) {
