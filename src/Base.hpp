@@ -7,7 +7,7 @@
 #include "BasicShape.hpp"
 #include "LevelShape.hpp"
 #include "BasicUtils.hpp"
-
+#include "MapUtils.hpp"
 
 class Base {
 private:
@@ -26,17 +26,12 @@ private:
     int currentLevel;
     int currentStage;
 
-    int roomWallWidth;
-
     std::vector<LevelShape> collides;
 
     std::vector<LevelShape> rooms;
     std::vector<LevelShape> roomWalls;
     std::vector<LevelShape> corridors;
     std::vector<LevelShape> corridorWalls;
-    /*std::vector<LevelShape> corridorsHigher;
-    std::vector<LevelShape> corridorsMid;
-    std::vector<LevelShape> corridorsLower;*/
 
 public:
 
@@ -46,15 +41,6 @@ public:
     // Init functions.
     void createWindow();
     void createPlayer();
-    void designLevel(int/*, int*/); // 1 = Rooms
-
-    // Required by designLevel().
-    void convertCoords(std::string, sf::Vector2f&);
-    void fillLevelArray(sf::Vector2f, sf::Vector2f, std::vector<std::string>, std::vector<LevelShape>&);
-    void createCorridorWalls();
-    void createRoomWalls();
-    void fixRoomToCorridorWalls();
-    void addCollides(std::vector<LevelShape>&);
 
     // Main Functions.
     bool gameLoop();

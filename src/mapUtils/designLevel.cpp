@@ -1,6 +1,6 @@
-#include "../Base.hpp"
+#include "../MapUtils.hpp"
 
-void Base::designLevel(int lvl/*, int designType*/) {
+void MapUtils::designLevel(int lvl/*, int designType*/) {
 
     // Rooms, Corridors (Higher, Mid and Lower).
 

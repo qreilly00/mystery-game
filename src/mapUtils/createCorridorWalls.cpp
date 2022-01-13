@@ -1,6 +1,6 @@
-#include "../Base.hpp"
+#include "../MapUtils.hpp"
 
-void Base::createCorridorWalls() {
+void MapUtils::createCorridorWalls() {
 
     for(auto x : corridors) {
         for(int i = 0; i < corridors.size(); i++) {

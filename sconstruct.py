@@ -40,7 +40,7 @@ trg = tmpTrg + trg # set target directory
 
 # build source file lists
 srcFiles = ['main.cpp']
-src = [Glob(tmpSrc + '/base/*.cpp'), Glob(tmpSrc + '/basicUtils/*.cpp'), Glob(tmpSrc + '/entity/*.cpp'), Glob(tmpSrc + '/basicShape/*.cpp'), Glob(tmpSrc + '/levelShape/*.cpp')]
+src = [Glob(tmpSrc + '/base/*.cpp'), Glob(tmpSrc + '/basicUtils/*.cpp'), Glob(tmpSrc + '/mapUtils/*.cpp'), Glob(tmpSrc + '/entity/*.cpp'), Glob(tmpSrc + '/basicShape/*.cpp'), Glob(tmpSrc + '/levelShape/*.cpp')]
 
 # add variantdir to srcFile strings
 for i in range(len(srcFiles)):

@@ -1,6 +1,6 @@
-#include "../Base.hpp"
+#include "../MapUtils.hpp"
 
-void Base::convertCoords(std::string coord, sf::Vector2f& v) {
+void MapUtils::convertCoords(std::string coord, sf::Vector2f& v) {
     float *ptr = &v.x;
 
     for(int i = 0; i < coord.size(); i++) {

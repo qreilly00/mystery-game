@@ -1,6 +1,6 @@
-#include "../Base.hpp"
+#include "../MapUtils.hpp"
 
-void Base::fixRoomToCorridorWalls() {
+void MapUtils::fixRoomToCorridorWalls() {
     int borderSize = roomWallWidth;
 
     //std::cout << borderSize;

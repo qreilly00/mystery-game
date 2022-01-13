@@ -1,6 +1,6 @@
-#include "../Base.hpp"
+#include "../MapUtils.hpp"
 
-void Base::fillLevelArray(sf::Vector2f startPosition, sf::Vector2f startSize, std::vector<std::string> map, std::vector<LevelShape>& levelArray) {
+void MapUtils::fillLevelArray(sf::Vector2f startPosition, sf::Vector2f startSize, std::vector<std::string> map, std::vector<LevelShape>& levelArray) {
     // To be incremented as each line of map is checked for rooms.
     sf::Vector2f currentRoomCoords(startPosition);
 

@@ -3,16 +3,16 @@ Base::Base() {
     //tu.setTime();
     totalTime = 0;
 
+    MapUtils mu;
+
     playerBorders.resize(4);
 
     currentLevel = 1;
     currentStage = 1;
 
-    roomWallWidth = 8;
-
     createWindow();
     createPlayer();
-    designLevel(currentLevel);
+    mu.designLevel(currentLevel);
 
     player.getShape().setPosition(playerStartPosition);
 

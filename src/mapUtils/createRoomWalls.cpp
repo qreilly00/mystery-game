@@ -1,6 +1,6 @@
-#include "../Base.hpp"
+#include "../MapUtils.hpp"
 
-void Base::createRoomWalls() {
+void MapUtils::createRoomWalls() {
     int borderSize = roomWallWidth;
     for(auto x : rooms) {
         int isRoomUp = 0;
