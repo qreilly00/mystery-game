@@ -1,6 +1,6 @@
 #include "../MapUtils.hpp"
 
-void MapUtils::createCorridorWalls() {
+void MapUtils::createCorridorWalls(std::vector<LevelShape> corridors, std::vector<LevelShape>& corridorWalls) {
 
     for(auto x : corridors) {
         for(int i = 0; i < corridors.size(); i++) {

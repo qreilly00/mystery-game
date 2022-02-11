@@ -1,6 +1,6 @@
 #include "../MapUtils.hpp"
 
-void MapUtils::fixRoomToCorridorWalls() {
+void MapUtils::fixRoomToCorridorWalls(std::vector<LevelShape>& roomWalls, std::vector<LevelShape> corridors) {
     int borderSize = roomWallWidth;
 
     //std::cout << borderSize;

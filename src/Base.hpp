@@ -15,6 +15,8 @@ private:
     BasicUtils ut;
     float totalTime;
 
+    MapUtils mu;
+
     sf::RenderWindow window;
     sf::View view;
 

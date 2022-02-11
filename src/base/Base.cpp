@@ -3,8 +3,6 @@ Base::Base() {
     //tu.setTime();
     totalTime = 0;
 
-    MapUtils mu;
-
     playerBorders.resize(4);
 
     currentLevel = 1;
@@ -12,9 +10,11 @@ Base::Base() {
 
     createWindow();
     createPlayer();
-    mu.designLevel(currentLevel);
+    //mu.designLevel(currentLevel, rooms, roomWalls, corridors, corridorWalls);
 
-    player.getShape().setPosition(playerStartPosition);
+    player.getShape().setPosition(mu.designLevel(currentLevel, rooms, corridors, roomWalls, corridorWalls));
+    mu.addCollides(collides, roomWalls);
+    mu.addCollides(collides, corridorWalls);
 
     view.setSize(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
 

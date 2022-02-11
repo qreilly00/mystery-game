@@ -1,8 +1,10 @@
 #include "../MapUtils.hpp"
 
-void MapUtils::designLevel(int lvl/*, int designType*/) {
+sf::Vector2f MapUtils::designLevel(int lvl, std::vector<LevelShape>& rooms, std::vector<LevelShape>& corridors, std::vector<LevelShape>& roomWalls, std::vector<LevelShape>& corridorWalls) {
 
     // Rooms, Corridors (Higher, Mid and Lower).
+
+    currentLevel = lvl;
 
     std::vector<std::string> fileNames = {"-rooms", "-corridors"/*"-corridors-higher", "-corridors-mid", "-corridors-lower"*/};
 
@@ -23,30 +25,15 @@ void MapUtils::designLevel(int lvl/*, int designType*/) {
         switch(i) {
             case 0:
                 fillLevelArray(startPosition, startSize, map, rooms);
-                createRoomWalls();
-                /*fixRoomToCorridorWalls();
-                addCollides(roomWalls);*/
+                createRoomWalls(rooms, roomWalls);
                 break;
             case 1:
-                fillLevelArray(startPosition, startSize, map, corridors/*corridorsHigher*/);
-                createCorridorWalls();
-                //addCollides(corridorWalls);
+                fillLevelArray(startPosition, startSize, map, corridors);
+                createCorridorWalls(corridors, corridorWalls);
                 break;
-            /*case 2:
-                fillLevelArray(startPosition, startSize, map, corridorsMid);
-                break;
-            case 3:
-                fillLevelArray(startPosition, startSize, map, corridorsLower);
-                break;*/
         }
     }
-    fixRoomToCorridorWalls();
-    addCollides(roomWalls);
-    addCollides(corridorWalls);
+    fixRoomToCorridorWalls(roomWalls, corridors);
 
-    /*for(auto x : rooms) {
-        if(x.getShape().getSize()) {
-
-        }
-    }*/
+    return playerStartPosition;
 }

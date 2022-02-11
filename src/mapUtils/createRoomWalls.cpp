@@ -1,6 +1,6 @@
 #include "../MapUtils.hpp"
 
-void MapUtils::createRoomWalls() {
+void MapUtils::createRoomWalls(std::vector<LevelShape>rooms, std::vector<LevelShape>&roomWalls) {
     int borderSize = roomWallWidth;
     for(auto x : rooms) {
         int isRoomUp = 0;
