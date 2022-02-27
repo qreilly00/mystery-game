@@ -8,11 +8,15 @@ Base::Base() {
     currentLevel = 1;
     currentStage = 1;
 
+    buildMode = 0;
+
     createWindow();
     createPlayer();
     //mu.designLevel(currentLevel, rooms, roomWalls, corridors, corridorWalls);
 
-    player.getShape().setPosition(mu.designLevel(currentLevel, rooms, corridors, roomWalls, corridorWalls));
+    sf::Vector2f playerPosition = mu.designLevel(currentLevel, rooms, corridors, roomWalls, corridorWalls);
+    player.getShape().setPosition(playerPosition.x - (player.getShape().getSize().x / 2), playerPosition.y - (player.getShape().getSize().y / 2));
+
     mu.addCollides(collides, roomWalls);
     mu.addCollides(collides, corridorWalls);
 

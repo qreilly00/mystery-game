@@ -26,6 +26,8 @@ sf::Vector2f MapUtils::designLevel(int lvl, std::vector<LevelShape>& rooms, std:
             case 0:
                 fillLevelArray(startPosition, startSize, map, rooms);
                 createRoomWalls(rooms, roomWalls);
+                playerStartPosition.x += startSize.x / 2;
+                playerStartPosition.y += startSize.y / 2;
                 break;
             case 1:
                 fillLevelArray(startPosition, startSize, map, corridors);

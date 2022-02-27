@@ -28,7 +28,11 @@ private:
     int currentLevel;
     int currentStage;
 
+    bool buildMode;
+
     std::vector<LevelShape> collides;
+
+    std::vector<LevelShape> objects;
 
     std::vector<LevelShape> rooms;
     std::vector<LevelShape> roomWalls;

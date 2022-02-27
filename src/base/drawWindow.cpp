@@ -26,6 +26,12 @@ void Base::drawWindow() {
         }
     }
 
+    for(auto x : objects) {
+        if(x.getStage()/* == currentStage*/) {
+            window.draw(x.getShape());
+        }
+    }
+
     /*for(auto x : roomWalls) {
         if(x.getStage() == currentStage) {
             window.draw(x.getShape());
@@ -39,7 +45,7 @@ void Base::drawWindow() {
     for(auto x : corridorsLower) {window.draw(x.getShape());}
     //for(auto x : jigSawPieces) {}*/
 
-    window.draw(player.getShape());
+    //window.draw(player.getShape());
 
     window.display();
 }

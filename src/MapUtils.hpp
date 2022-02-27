@@ -16,23 +16,25 @@ private:
     sf::Vector2f playerStartPosition;
 
     int currentLevel;
-    /*int currentStage;*/
-
     int roomWallWidth;
 
-    /*std::vector<LevelShape> collides;
+    int CurrentObjectVar;
 
-    std::vector<LevelShape> rooms;
-    std::vector<LevelShape> roomWalls;
-    std::vector<LevelShape> corridors;
-    std::vector<LevelShape> corridorWalls;*/
+    // Visual editor variables.
+    sf::Vector2f objectSize; // Select = 1.
+    sf::Vector2f objectPosition; // Select = 2.
+    sf::Color objectColor; // Select = 3.
+    //sf::texture objectTexture;
+    bool objectCollidable; // Select = 5.
+    int objectLevel; // Select = 6.
+    int objectStage; // Select = 7.
 
 public:
 
     // Init class.
     MapUtils();
 
-    // Init functions.
+    // text editor functions.
     sf::Vector2f designLevel(int lvl, std::vector<LevelShape>&, std::vector<LevelShape>&, std::vector<LevelShape>&, std::vector<LevelShape>&);
 
     // Required by designLevel().
@@ -44,6 +46,13 @@ public:
 
     void fixRoomToCorridorWalls(std::vector<LevelShape>&, std::vector<LevelShape>);
     void addCollides(std::vector<LevelShape>&, std::vector<LevelShape>);
+
+    // Visual editor functions.
+    LevelShape leftMousePressed(sf::Vector2f);
+
+    // Required by visual editor functions.
+    void setCurrentObjectVar(int);
+    void adjustObjectVar(bool);
 };
 
 #endif
