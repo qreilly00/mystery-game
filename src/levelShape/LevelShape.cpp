@@ -7,7 +7,7 @@ LevelShape::LevelShape() {
 
     shape.setFillColor(sf::Color::White);
 
-    isColidable = 0;
+    isCollidable = 0;
 
     level = 0;
     stage = 0;
@@ -20,7 +20,7 @@ LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, 
 
     shape.setFillColor(clr);
 
-    isColidable = isCol;
+    isCollidable = isCol;
 
     level = lvl;
     stage = stg;

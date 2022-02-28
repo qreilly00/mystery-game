@@ -6,7 +6,7 @@
 class BasicShape {
 protected:
     sf::RectangleShape shape;
-    bool isColidable;
+    bool isCollidable;
 public:
     // Init class.
     BasicShape();
@@ -14,6 +14,7 @@ public:
 
     // Get and set util for all shape properties.
     sf::RectangleShape& getShape();
+    bool getIsCollidable();
 };
 
 #endif

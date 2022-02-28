@@ -7,7 +7,7 @@ Entity::Entity() {
 
     shape.setFillColor(sf::Color::White);
 
-    isColidable = 0;
+    isCollidable = 0;
 
     speed = 100;
     speedMultiplier = 1;
@@ -20,7 +20,7 @@ Entity::Entity(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isC
 
     shape.setFillColor(clr);
 
-    isColidable = isCol;
+    isCollidable = isCol;
 
     speed = spd;
     speedMultiplier = spdMlt;

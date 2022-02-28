@@ -5,6 +5,7 @@ bool Base::checkControls() {
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             window.close();
+            mu.saveObjects(objects);
             return 1;
         }
 
@@ -29,6 +30,14 @@ bool Base::checkControls() {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 if(buildMode == 1)
                     objects.push_back(mu.leftMousePressed(window.mapPixelToCoords(sf::Mouse::getPosition(window))));
+            }
+
+            if (event.mouseButton.button == sf::Mouse::Right) {
+                if(buildMode == 1)
+                    for(int i = 0; i < objects.size(); i++) {
+                        if(mu.rightMousePressed(window.mapPixelToCoords(sf::Mouse::getPosition(window))) == objects[i].getShape().getPosition())
+                            objects.erase(objects.begin() + i);
+                    }
             }
         }
 

@@ -16,7 +16,7 @@ std::vector<std::string> BasicUtils::getFileLines(std::string fileName) {
     }
     else {
         std::cout << "File Unavailable" << std::endl;
-        exit(1);
+        //exit(1);
     }
 
     return result;

@@ -7,7 +7,7 @@ BasicShape::BasicShape() {
 
     shape.setFillColor(sf::Color::White);
 
-    isColidable = 0;
+    isCollidable = 0;
 }
 
 BasicShape::BasicShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol) {
@@ -17,5 +17,5 @@ BasicShape::BasicShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, 
 
     shape.setFillColor(clr);
 
-    isColidable = isCol;
+    isCollidable = isCol;
 }

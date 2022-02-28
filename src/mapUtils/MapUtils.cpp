@@ -1,6 +1,8 @@
 #include "../MapUtils.hpp"
 
 MapUtils::MapUtils() {
+    l = LevelShape(objectSize, sf::Vector2f(0, 0), objectColor, objectCollidable, objectLevel, objectStage);
+
     roomWallWidth = 8;
 
     CurrentObjectVar = 1;

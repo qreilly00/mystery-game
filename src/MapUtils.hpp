@@ -13,6 +13,8 @@ class MapUtils {
 private:
     BasicUtils ut;
 
+    LevelShape l;
+
     sf::Vector2f playerStartPosition;
 
     int currentLevel;
@@ -49,6 +51,10 @@ public:
 
     // Visual editor functions.
     LevelShape leftMousePressed(sf::Vector2f);
+    sf::Vector2f rightMousePressed(sf::Vector2f);
+    sf::RectangleShape buildPointer(sf::Vector2f);
+    void saveObjects(std::vector<LevelShape>);
+    //std::vector<LevelShape> loadObjects();
 
     // Required by visual editor functions.
     void setCurrentObjectVar(int);
