@@ -22,6 +22,7 @@ void MapUtils::saveObjects(std::vector<LevelShape> objects) {
 
                 std::stringstream ss;
                 ss << "(" << x.getShape().getSize().x << "," << x.getShape().getSize().y << ")"
+                    << "(" << x.getShape().getPosition().x << "," << x.getShape().getPosition().y << ")"
                     << "(" << x.getShape().getFillColor().toInteger() << ")"
                     << "(" << x.getIsCollidable() << ")"
                     << "(" << x.getLevel() << ")"

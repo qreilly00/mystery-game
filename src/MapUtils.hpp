@@ -54,7 +54,7 @@ public:
     sf::Vector2f rightMousePressed(sf::Vector2f);
     sf::RectangleShape buildPointer(sf::Vector2f);
     void saveObjects(std::vector<LevelShape>);
-    //std::vector<LevelShape> loadObjects();
+    std::vector<LevelShape> loadObjects(int);
 
     // Required by visual editor functions.
     void setCurrentObjectVar(int);

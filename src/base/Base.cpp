@@ -20,6 +20,8 @@ Base::Base() {
     mu.addCollides(collides, roomWalls);
     mu.addCollides(collides, corridorWalls);
 
+    objects = mu.loadObjects(1);
+
     view.setSize(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
 
     // Example.
