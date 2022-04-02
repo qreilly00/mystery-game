@@ -7,11 +7,13 @@
 #include "BasicShape.hpp"
 #include "LevelShape.hpp"
 #include "BasicUtils.hpp"
+#include "TextureUtils.hpp"
 
 
 class MapUtils {
 private:
     BasicUtils ut;
+    TextureUtils tu;
 
     LevelShape l;
 
@@ -21,12 +23,13 @@ private:
     int roomWallWidth;
 
     int CurrentObjectVar;
+    int CurrentTexture;
 
     // Visual editor variables.
     sf::Vector2f objectSize; // Select = 1.
     sf::Vector2f objectPosition; // Select = 2.
     sf::Color objectColor; // Select = 3.
-    //sf::texture objectTexture;
+    //sf::texture objectTexture; // Select = 4
     bool objectCollidable; // Select = 5.
     int objectLevel; // Select = 6.
     int objectStage; // Select = 7.

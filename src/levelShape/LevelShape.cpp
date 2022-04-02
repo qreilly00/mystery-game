@@ -25,3 +25,17 @@ LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, 
     level = lvl;
     stage = stg;
 }
+
+LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, sf::Texture *tex, bool isCol, int lvl, int stg) {
+    // A basic property setup, tailored for a specific purpose.
+    shape.setSize(size);
+    shape.setPosition(position);
+
+    shape.setFillColor(clr);
+    shape.setTexture(tex);
+
+    isCollidable = isCol;
+
+    level = lvl;
+    stage = stg;
+}

@@ -6,6 +6,7 @@
 class BasicShape {
 protected:
     sf::RectangleShape shape;
+
     bool isCollidable;
 public:
     // Init class.

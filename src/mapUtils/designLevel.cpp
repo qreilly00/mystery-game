@@ -15,7 +15,7 @@ sf::Vector2f MapUtils::designLevel(int lvl, std::vector<LevelShape>& rooms, std:
         sf::Vector2f startSize;
 
         // Grab all lines from map-x-rooms.
-        map = ut.getFileLines("../map-" + std::to_string(lvl) + fileNames[i]);
+        map = ut.getFileLines("../maps/map-" + std::to_string(lvl) + fileNames[i]);
 
         // Get start position and size for map-x-rooms.
         convertCoords(map[0], startPosition);

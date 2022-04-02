@@ -13,6 +13,13 @@ void MapUtils::adjustObjectVar(bool willIncrease) {
                 }
             }
             break;
+        case 4:
+            if(willIncrease == 1) {
+                CurrentTexture < tu.getTextures().size() ? CurrentTexture++ : CurrentTexture == 0;
+            } else {
+                CurrentTexture > 0 ? CurrentTexture-- : CurrentTexture == tu.getTextures().size() - 1;
+            }
+            break;
         case 5:
             willIncrease == 1 ? objectCollidable == 1 : objectCollidable == 0;
             break;
@@ -23,4 +30,6 @@ void MapUtils::adjustObjectVar(bool willIncrease) {
             willIncrease == 1 ? objectStage++ : objectStage == 0 ? : objectStage--;
             break;
     }
+
+    std::cout << CurrentTexture << std::endl;
 }
