@@ -11,7 +11,7 @@ void MapUtils::saveObjects(std::vector<LevelShape> objects) {
     std::vector<std::vector<std::string> > original; //= ut.getFileLines(tmp);
     std::vector<std::vector<std::string> > output;
 
-    while(objectCounter != objects.size()) {
+    while(objectCounter < objects.size()) {
         std::vector<std::string> tmp;
         //int tmpCounter = objectCounter;
 
@@ -20,11 +20,15 @@ void MapUtils::saveObjects(std::vector<LevelShape> objects) {
                 //tmpCounter++;
                 objectCounter++;
 
+                /*int texOut = 0;
+                for(int i = 0; i < tu.getTextures().size(); i++) {if(tu.getTextures()[i] == x.getShape().getTexture()) {texOut = i;}}*/
+
                 std::stringstream ss;
                 ss << "(" << x.getShape().getSize().x << "," << x.getShape().getSize().y << ")"
                     << "(" << x.getShape().getPosition().x << "," << x.getShape().getPosition().y << ")"
                     << "(" << x.getShape().getFillColor().toInteger() << ")"
                     << "(" << x.getIsCollidable() << ")"
+                    << "(" << x.getTextureIndex() << ")"
                     << "(" << x.getLevel() << ")"
                     << "(" << x.getStage() << ")";
                     tmp.push_back(ss.str());
@@ -35,7 +39,7 @@ void MapUtils::saveObjects(std::vector<LevelShape> objects) {
             output.push_back(tmp);
             objectCounter += tmp;
         }*/
-        original.push_back(ut.getFileLines("../map-" + std::to_string(levelCounter) + "-objects"));
+        original.push_back(ut.getFileLines("../maps/map-" + std::to_string(levelCounter) + "-objects"));
         output.push_back(tmp);
         levelCounter++;
     }
@@ -44,9 +48,9 @@ void MapUtils::saveObjects(std::vector<LevelShape> objects) {
 
     for(int i = 0; i < output.size(); i++) {
         if(output[i].size() != 0) {
-            ofs.open("../map-" + std::to_string(i + 1) + "-objects");
+            ofs.open("../maps/map-" + std::to_string(i + 1) + "-objects");
 
-            for(int j = 0; j < original[i].size(); j++) {
+            /*for(int j = 0; j < original[i].size(); j++) {
 
 
                 if(j != original[i].size() - 1) {
@@ -56,7 +60,7 @@ void MapUtils::saveObjects(std::vector<LevelShape> objects) {
                 }
 
 
-            }
+            }*/
 
             for(int j = 0; j < output[i].size(); j++) {
 

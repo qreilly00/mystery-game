@@ -24,6 +24,7 @@ private:
 
     int CurrentObjectVar;
     int CurrentTexture;
+    int textureChanged;
 
     // Visual editor variables.
     sf::Vector2f objectSize; // Select = 1.

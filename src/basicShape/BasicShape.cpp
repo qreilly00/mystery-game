@@ -8,9 +8,10 @@ BasicShape::BasicShape() {
     shape.setFillColor(sf::Color::White);
 
     isCollidable = 0;
+    textureIndex = 0;
 }
 
-BasicShape::BasicShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol) {
+BasicShape::BasicShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, int idx) {
     // A basic property setup, tailored for a specific purpose.
     shape.setSize(size);
     shape.setPosition(position);
@@ -18,4 +19,5 @@ BasicShape::BasicShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, 
     shape.setFillColor(clr);
 
     isCollidable = isCol;
+    textureIndex = idx;
 }
