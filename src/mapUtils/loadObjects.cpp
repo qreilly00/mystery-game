@@ -20,6 +20,7 @@ std::vector<LevelShape> MapUtils::loadObjects(int level) {
             int idx = 0;
             int lvl = 0;
             int stage = 0;
+            bool isFG = 0;
 
             float* tmpPointer = &size.x;
 
@@ -34,7 +35,7 @@ std::vector<LevelShape> MapUtils::loadObjects(int level) {
                     firstCoordGrabbed++;
                     //break;
                 } else if(input[i][j] == ')' && lastOtherPropertyGrabbed != -1) {
-                    if(lastOtherPropertyGrabbed == 4) {break;}
+                    if(lastOtherPropertyGrabbed == 5) {break;}
                     lastOtherPropertyGrabbed++;
                 } else if(input[i][j] >= '0' && input[i][j] <= '9') {
                     if(firstCoordGrabbed < 2) {*tmpPointer *= float(10); *tmpPointer += float(input[i][j] - '0');}
@@ -43,12 +44,13 @@ std::vector<LevelShape> MapUtils::loadObjects(int level) {
                     (lastOtherPropertyGrabbed == 2) ? (idx *= (10), idx += (input[i][j] - '0')):(0);
                     (lastOtherPropertyGrabbed == 3) ? (lvl *= (10), lvl += (input[i][j] - '0')):(0);
                     (lastOtherPropertyGrabbed == 4) ? (stage *= (10), stage += (input[i][j] - '0')):(0);
+                    (lastOtherPropertyGrabbed == 5) ? (isFG *= (10), isFG += (input[i][j] - '0')):(0);
                 }
 
                 //std::cout << input[i][j] << std::endl;
             }
 
-            objs.push_back(LevelShape(size, position, sf::Color(color), isCol, &tu.getTextures()[idx], idx, lvl, stage /*sf::Color::White, 1, 1, 1*/));
+            objs.push_back(LevelShape(size, position, sf::Color(color), isCol, &tu.getTextures()[idx], idx, lvl, stage, isFG /*sf::Color::White, 1, 1, 1*/));
         }
     }
 

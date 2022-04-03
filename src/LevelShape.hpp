@@ -15,7 +15,7 @@ public:
     // Init class.
     LevelShape();
     LevelShape(sf::Vector2f, sf::Vector2f, sf::Color, bool, int, int);
-    LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, sf::Texture *tex, int idx, int lvl, int stg);
+    LevelShape(sf::Vector2f, sf::Vector2f, sf::Color, bool, sf::Texture*, int, int, int, bool);
 
     // Property get utils.
     int getLevel();

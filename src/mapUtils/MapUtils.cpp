@@ -3,8 +3,6 @@
 MapUtils::MapUtils() {
     tu.loadAllTextures();
 
-    l = LevelShape(objectSize, sf::Vector2f(0, 0), sf::Color::White, objectCollidable, &tu.getTextures()[CurrentTexture], CurrentTexture, objectLevel, objectStage);
-
     roomWallWidth = 8;
 
     CurrentObjectVar = 1;
@@ -14,8 +12,11 @@ MapUtils::MapUtils() {
     objectSize = sf::Vector2f(32, 32);
     objectPosition = sf::Vector2f(0, 0);
     objectColor = sf::Color::White;
+    objectIsForGround = 0;
     //objectTexture;
     objectCollidable = 0;
     objectLevel = 1;
     objectStage = 1;
+
+    l = LevelShape(objectSize, sf::Vector2f(0, 0), sf::Color::White, objectCollidable, &tu.getTextures()[CurrentTexture], CurrentTexture, objectLevel, objectStage, objectIsForGround);
 }

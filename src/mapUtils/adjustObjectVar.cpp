@@ -13,6 +13,9 @@ void MapUtils::adjustObjectVar(bool willIncrease) {
                 }
             }
             break;
+        case 3:
+            objectIsForGround == 0 ? objectIsForGround = 1 : objectIsForGround = 0;
+            break;
         case 4:
             if(willIncrease == 1) {
                 CurrentTexture < tu.getTextures().size() ? CurrentTexture++ : CurrentTexture = 0;
@@ -22,7 +25,7 @@ void MapUtils::adjustObjectVar(bool willIncrease) {
             textureChanged = 1;
             break;
         case 5:
-            willIncrease == 1 ? objectCollidable == 1 : objectCollidable == 0;
+            objectCollidable == 0 ? objectCollidable = 1 : objectCollidable = 0;
             break;
         case 6:
             willIncrease == 1 ? objectLevel++ : objectLevel == 0 ? : objectLevel--;

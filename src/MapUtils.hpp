@@ -30,6 +30,7 @@ private:
     sf::Vector2f objectSize; // Select = 1.
     sf::Vector2f objectPosition; // Select = 2.
     sf::Color objectColor; // Select = 3.
+    int objectIsForGround;
     //sf::texture objectTexture; // Select = 4
     bool objectCollidable; // Select = 5.
     int objectLevel; // Select = 6.
@@ -56,7 +57,7 @@ public:
     // Visual editor functions.
     LevelShape leftMousePressed(sf::Vector2f);
     sf::Vector2f rightMousePressed(sf::Vector2f);
-    sf::RectangleShape buildPointer(sf::Vector2f);
+    sf::RectangleShape& buildPointer(sf::Vector2f);
     void saveObjects(std::vector<LevelShape>);
     std::vector<LevelShape> loadObjects(int);
 

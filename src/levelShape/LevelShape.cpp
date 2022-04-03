@@ -9,6 +9,7 @@ LevelShape::LevelShape() {
 
     isCollidable = 0;
     textureIndex = 0;
+    isForGround = 0;
 
     level = 0;
     stage = 0;
@@ -23,12 +24,13 @@ LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, 
 
     isCollidable = isCol;
     textureIndex = -1;
+    isForGround = 0;
 
     level = lvl;
     stage = stg;
 }
 
-LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, sf::Texture *tex, int idx, int lvl, int stg) {
+LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, sf::Texture *tex, int idx, int lvl, int stg, bool isFG) {
     // A basic property setup, tailored for a specific purpose.
     shape.setSize(size);
     shape.setPosition(position);
@@ -38,6 +40,7 @@ LevelShape::LevelShape(sf::Vector2f size, sf::Vector2f position, sf::Color clr, 
 
     isCollidable = isCol;
     textureIndex = idx;
+    isForGround = isFG;
 
     level = lvl;
     stage = stg;

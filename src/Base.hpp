@@ -58,7 +58,7 @@ public:
 
     // Required by checkMoves().
     void updatePlayerBorders();
-
+    void fadeForeGround();
     void drawWindow();
 };
 

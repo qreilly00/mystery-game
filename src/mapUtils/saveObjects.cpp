@@ -30,7 +30,8 @@ void MapUtils::saveObjects(std::vector<LevelShape> objects) {
                     << "(" << x.getIsCollidable() << ")"
                     << "(" << x.getTextureIndex() << ")"
                     << "(" << x.getLevel() << ")"
-                    << "(" << x.getStage() << ")";
+                    << "(" << x.getStage() << ")"
+                    << "(" << x.getIsForGround() << ")";
                     tmp.push_back(ss.str());
             }
         }
