@@ -1,10 +1,10 @@
 #include "../Base.hpp"
 
 void Base::drawWindow() {
+    window.clear(sf::Color::Black);
+
     view.setCenter(ut.getRectCenter(player.getShape()));
     window.setView(view);
-
-    window.clear(sf::Color::Black);
 
     //std::cout << rooms[0].getStage();
 
@@ -48,6 +48,10 @@ void Base::drawWindow() {
     //for(auto x : jigSawPieces) {}*/
 
     //window.draw(player.getShape());
+
+    window.setView(hu.getHudView());
+
+    // draw hud elements
 
     window.display();
 }

@@ -8,6 +8,7 @@
 #include "LevelShape.hpp"
 #include "BasicUtils.hpp"
 #include "MapUtils.hpp"
+#include "HudUtils.hpp"
 
 class Base {
 private:
@@ -19,6 +20,8 @@ private:
 
     sf::RenderWindow window;
     sf::View view;
+
+    HudUtils hu;
 
     Entity player;
     std::vector<sf::FloatRect> playerBorders;
