@@ -52,6 +52,10 @@ void Base::drawWindow() {
     window.setView(hu.getHudView());
 
     // draw hud elements
+    hu.drawText(window);
 
     window.display();
+
+    // reset for MapUtils
+    window.setView(view);
 }
