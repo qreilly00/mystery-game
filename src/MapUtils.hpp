@@ -23,18 +23,19 @@ private:
     int roomWallWidth;
 
     int CurrentObjectVar;
-    int CurrentTexture;
     int textureChanged;
+
+    std::vector<std::string> objectVarNames;
 
     // Visual editor variables.
     sf::Vector2f objectSize; // Select = 1.
     sf::Vector2f objectPosition; // Select = 2.
     sf::Color objectColor; // Select = 3.
-    int objectIsForGround;
-    //sf::texture objectTexture; // Select = 4
-    bool objectCollidable; // Select = 5.
-    int objectLevel; // Select = 6.
-    int objectStage; // Select = 7.
+    int objectIsForGround; // Select = 4.
+    int CurrentTexture; // Select = 5
+    bool objectCollidable; // Select = 6.
+    int objectLevel; // Select = 7.
+    int objectStage; // Select = 8.
 
 public:
 
@@ -64,6 +65,10 @@ public:
     // Required by visual editor functions.
     void setCurrentObjectVar(int);
     void adjustObjectVar(bool);
+
+
+    std::string getObjectVarName();
+    std::string getObjectVarValue();
 };
 
 #endif

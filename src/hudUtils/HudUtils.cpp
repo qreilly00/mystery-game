@@ -2,13 +2,10 @@
 
 HudUtils::HudUtils() {
     // testing out the text class here.
-    txtu.createText(sf::Color::White, sf::Vector2f(1000, 0), sf::Vector2f(1, 1), "This is a test string!");
-    textTokens.push_back(txtu.generateStorageToken());
+    currentHud = 0;
 
-    txtu.createText(sf::Color::White, sf::Vector2f(1000, 50), sf::Vector2f(1, 1), "This is a test string!");
-    textTokens.push_back(txtu.generateStorageToken());
+    textTokens.push_back(std::vector<int>());
 
-    for(auto x : textTokens) {
-        std::cout << x << std::endl;
-    }
+    txtu.createText(sf::Color::White, sf::Vector2f(1000, 0), sf::Vector2f(.6f, .6f), "***");
+    textTokens[currentHud].push_back(txtu.generateStorageToken());
 }

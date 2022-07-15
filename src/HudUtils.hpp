@@ -15,19 +15,25 @@ private:
 
     sf::View hudView;
 
-    std::vector<int> textTokens;
+    int currentHud;
+
+    std::vector<std::vector<int> > textTokens;
 
 public:
 
     // Init class.
     HudUtils();
 
-    void initHudView(sf::RenderWindow&);
+    void initHudView(sf::RenderWindow&, sf::Vector2f);
 
     void drawText(sf::RenderWindow&);
+    void drawText(sf::RenderWindow&, std::string, int);
+    void addToken();
 
     // Get and set.
     sf::View &getHudView();
+
+    void setCurrentHud(int);
 
 };
 

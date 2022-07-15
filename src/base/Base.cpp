@@ -14,7 +14,7 @@ Base::Base() {
     createPlayer();
     //mu.designLevel(currentLevel, rooms, roomWalls, corridors, corridorWalls);
 
-    hu.initHudView(window);
+    hu.initHudView(window, sf::Vector2f(1000, 0));
 
     sf::Vector2f playerPosition = mu.designLevel(currentLevel, rooms, corridors, roomWalls, corridorWalls);
     player.getShape().setPosition(playerPosition.x - (player.getShape().getSize().x / 2), playerPosition.y - (player.getShape().getSize().y / 2));

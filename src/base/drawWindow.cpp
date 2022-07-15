@@ -52,7 +52,10 @@ void Base::drawWindow() {
     window.setView(hu.getHudView());
 
     // draw hud elements
-    hu.drawText(window);
+    std::stringstream ss;
+    ss << mu.getObjectVarName() << ": "<< mu.getObjectVarValue();
+
+    hu.drawText(window, ss.str(), buildMode);
 
     window.display();
 
