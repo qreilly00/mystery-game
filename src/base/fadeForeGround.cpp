@@ -16,8 +16,16 @@ void Base::fadeForeGround() {
             if(xDiff < 32) {xDiff = -xDiff;}
             if(yDiff < 32) {yDiff = -yDiff;}
 
-            int alpha =  (xDiff + yDiff) / 3 - 1;
+            int alpha;
+            alpha = (xDiff + yDiff) <= 128 ? 0: (xDiff + yDiff);
+
+            /*if(xDiff < 256 && yDiff < 256) {
+                alpha = (xDiff + yDiff) / 2 <= 96 ? 0: (xDiff + yDiff) / 2;
+            }
+
+            int alpha =  (xDiff + yDiff) / 3 - 1;*/
             if(alpha < 0) {alpha = -alpha;}
+            if(alpha > 255) {alpha = 255;}
             objects[i].getShape().setFillColor(sf::Color(objects[i].getShape().getFillColor().r, objects[i].getShape().getFillColor().g, objects[i].getShape().getFillColor().b, alpha));
         } else {
             objects[i].getShape().setFillColor(sf::Color(objects[i].getShape().getFillColor().r, objects[i].getShape().getFillColor().g, objects[i].getShape().getFillColor().b, 255));

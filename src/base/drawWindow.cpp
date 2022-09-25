@@ -47,7 +47,7 @@ void Base::drawWindow() {
     for(auto x : corridorsLower) {window.draw(x.getShape());}
     //for(auto x : jigSawPieces) {}*/
 
-    //window.draw(player.getShape());
+    window.draw(player.getShape());
 
     window.setView(hu.getHudView());
 
