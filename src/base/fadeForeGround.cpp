@@ -13,8 +13,8 @@ void Base::fadeForeGround() {
 
             int xDiff = xPos - window.mapPixelToCoords(sf::Mouse::getPosition(window)).x;
             int yDiff = yPos - window.mapPixelToCoords(sf::Mouse::getPosition(window)).y;
-            if(xDiff < 0) {xDiff = -xDiff;}
-            if(yDiff < 0) {yDiff = -yDiff;}
+            if(xDiff < 32) {xDiff = -xDiff;}
+            if(yDiff < 32) {yDiff = -yDiff;}
 
             int alpha =  (xDiff + yDiff) / 3 - 1;
             if(alpha < 0) {alpha = -alpha;}
