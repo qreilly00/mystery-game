@@ -19,7 +19,7 @@ public:
 
     // Main functions.
     void loadAllTextures();
-
+    std::vector<int> loadAllTextures(std::string);
     // Get and set.
     std::vector<sf::Texture>& getTextures();
 };
