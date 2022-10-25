@@ -31,6 +31,11 @@ void Base::drawWindow() {
             window.draw(x.getShape());
         }
     }
+    for(auto x : farmObjects) {
+        if(x.getLevel() == currentLevel && x.getStage() == currentStage) {
+            window.draw(x.getShape());
+        }
+    }
 
     if(buildMode == 1) window.draw(mu.buildPointer(window.mapPixelToCoords(sf::Mouse::getPosition(window))));
 

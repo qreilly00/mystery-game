@@ -9,6 +9,7 @@
 #include "BasicUtils.hpp"
 #include "MapUtils.hpp"
 #include "HudUtils.hpp"
+#include "FarmablePlot.hpp"
 
 class Base {
 private:
@@ -17,11 +18,10 @@ private:
     float totalTime;
 
     MapUtils mu;
+    HudUtils hu;
 
     sf::RenderWindow window;
     sf::View view;
-
-    HudUtils hu;
 
     Entity player;
     std::vector<sf::FloatRect> playerBorders;
@@ -36,6 +36,7 @@ private:
     std::vector<LevelShape> collides;
 
     std::vector<LevelShape> objects;
+    std::vector<FarmablePlot> farmObjects;
 
     std::vector<LevelShape> rooms;
     std::vector<LevelShape> roomWalls;

@@ -23,6 +23,7 @@ Base::Base() {
     mu.addCollides(collides, corridorWalls);
 
     objects = mu.loadObjects(1);
+    farmObjects.push_back(FarmablePlot(sf::Vector2f(32, 32), sf::Vector2f(32, 32), sf::Color::Black, 1/*, 0, tu.getTextures()*/));
 
     view.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
 

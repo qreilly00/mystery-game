@@ -33,6 +33,9 @@ void MapUtils::adjustObjectVar(bool willIncrease) {
         case 8:
             willIncrease == 1 ? objectStage++ : objectStage == 0 ? : objectStage--;
             break;
+        case 9:
+            isObjectFarm == 0 ? isObjectFarm = 1 : isObjectFarm = 0;
+            break;
     }
 
     //std::cout << CurrentTexture << std::endl;

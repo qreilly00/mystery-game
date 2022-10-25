@@ -8,7 +8,7 @@
 #include "LevelShape.hpp"
 #include "BasicUtils.hpp"
 #include "TextureUtils.hpp"
-
+#include "FarmablePlot.hpp"
 
 class MapUtils {
 private:
@@ -36,6 +36,7 @@ private:
     bool objectCollidable; // Select = 6.
     int objectLevel; // Select = 7.
     int objectStage; // Select = 8.
+    bool isObjectFarm;
 
 public:
 
@@ -57,6 +58,7 @@ public:
 
     // Visual editor functions.
     LevelShape leftMousePressed(sf::Vector2f);
+    FarmablePlot leftMousePressed(sf::Vector2f);
     sf::Vector2f rightMousePressed(sf::Vector2f);
     sf::RectangleShape& buildPointer(sf::Vector2f);
     void saveObjects(std::vector<LevelShape>);
@@ -69,6 +71,7 @@ public:
 
     std::string getObjectVarName();
     std::string getObjectVarValue();
+    bool getIsObjectFarm();
 };
 
 #endif

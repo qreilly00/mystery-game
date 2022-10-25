@@ -12,7 +12,7 @@
     isForGround = 0;
 }*/
 
-BasicShape::GrowableItem(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, std::vector<int> idx) {
+BasicShape::GrowableItem(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol/*, std::vector<int> idx*/) {
     // A basic property setup, tailored for a specific purpose.
     shape.setSize(size);
     shape.setPosition(position);
@@ -24,8 +24,8 @@ BasicShape::GrowableItem(sf::Vector2f size, sf::Vector2f position, sf::Color clr
 
     type = BLUE_FLOWER;
 
-    stageTextureIndexes = idx;
-    textureIndex = idx[0];
+    /*stageTextureIndexes = idx;
+    textureIndex = idx[0];*/
 
     numberOfStages = 4;
     timeOfStages = 4;

@@ -26,5 +26,7 @@ MapUtils::MapUtils() {
     objectLevel = 1;
     objectStage = 1;
 
+    isObjectFarm = 0;
+
     l = LevelShape(objectSize, sf::Vector2f(0, 0), sf::Color::White, objectCollidable, &tu.getTextures()[CurrentTexture], CurrentTexture, objectLevel, objectStage, objectIsForGround);
 }

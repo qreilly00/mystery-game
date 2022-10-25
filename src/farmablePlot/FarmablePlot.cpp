@@ -12,7 +12,7 @@
     isForGround = 0;
 }*/
 
-BasicShape::FarmablePlot(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol, int idx, std::vector<int> grblidx) {
+BasicShape::FarmablePlot(sf::Vector2f size, sf::Vector2f position, sf::Color clr, bool isCol/*, int idx, std::vector<int> grblidx*/) {
     // A basic property setup, tailored for a specific purpose.
     shape.setSize(size);
     shape.setPosition(position);
