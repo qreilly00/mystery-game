@@ -1,4 +1,4 @@
-#include "../BasicShape.hpp"
+#include "../FarmablePlot.hpp"
 
 /*BasicShape::FarmablePlot() {
     // A basic property setup.

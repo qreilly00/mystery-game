@@ -13,7 +13,7 @@ private:
     std::vector<int> stageTextureIndexes;
 
     int numberOfStages;
-    int timeOfStages;
+    float timeOfStages;
 
 public:
     // Init class.
@@ -21,7 +21,10 @@ public:
     GrowableItem(sf::Vector2f, sf::Vector2f, sf::Color, bool, int);
 
     void setGrowableType(GrowableTypes);
-    //void setStageTextureIndexes(GrowableTypes);
+
+    int getNumberOfStages();
+    float getTimeOfStages();
+    GrowableTypes getGrowableType();
 };
 
 #endif

@@ -1,4 +1,4 @@
-#include "../BasicShape.hpp"
+#include "../GrowableItem.hpp"
 
 /*BasicShape::BasicShape() {
     // A basic property setup.
