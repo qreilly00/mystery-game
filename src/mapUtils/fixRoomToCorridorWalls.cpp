@@ -2,8 +2,7 @@
 
 void MapUtils::fixRoomToCorridorWalls(std::vector<LevelShape>& roomWalls, std::vector<LevelShape> corridors) {
     int borderSize = roomWallWidth;
-
-    //std::cout << borderSize;
+    
     for(int i = 0; i < roomWalls.size(); i++) {
 
         for(int j = 0; j < corridors.size(); j++) {
@@ -33,7 +32,6 @@ void MapUtils::fixRoomToCorridorWalls(std::vector<LevelShape>& roomWalls, std::v
             ) {
                 roomWalls[i].getShape().setSize(sf::Vector2f(1, 1));
             }
-            //std::cout << isRoomUp << std::endl;
         }
     }
 }

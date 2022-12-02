@@ -1,12 +1,8 @@
 #include "../MapUtils.hpp"
 
 std::vector<LevelShape> MapUtils::loadObjects(int level) {
-    //std::ifstream ifs ("../map-" + std::to_string(level) + "-objects");
-
-    std::vector<std::string> input = ut.getFileLines("../maps/map-" + std::to_string(level) + "-objects");
+    std::vector<std::string> input = ut.readFileLines("../maps/map-" + std::to_string(level) + "-objects");
     std::vector<LevelShape> objs;
-
-    //std::cout << input[0] << std::endl;
 
     if(input.size() != 0) {
         for(int i = 0; i < input.size() - 1; i++) {
@@ -46,82 +42,11 @@ std::vector<LevelShape> MapUtils::loadObjects(int level) {
                     (lastOtherPropertyGrabbed == 4) ? (stage *= (10), stage += (input[i][j] - '0')):(0);
                     (lastOtherPropertyGrabbed == 5) ? (isFG *= (10), isFG += (input[i][j] - '0')):(0);
                 }
-
-                //std::cout << input[i][j] << std::endl;
             }
 
-            objs.push_back(LevelShape(size, position, sf::Color(color), isCol, &tu.getTextures()[idx], idx, lvl, stage, isFG /*sf::Color::White, 1, 1, 1*/));
+            objs.push_back(LevelShape(size, position, sf::Color(color), isCol, isFG, lvl, stage, &tu.getTextures()[idx], idx /*sf::Color::White, 1, 1, 1*/));
         }
     }
-
-    //std::cout << size.x << " " << size.y << " " << position.x << " " << position.y << std::endl;
 
     return objs;
 }
-
-/*#include "../MapUtils.hpp"
-
-std::vector<LevelShape> MapUtils::loadObjects(int level) {
-    //std::ifstream ifs ("../map-" + std::to_string(level) + "-objects");
-
-    std::vector<std::string> input = ut.getFileLines("../maps/map-" + std::to_string(level) + "-objects");
-    std::vector<LevelShape> objs;
-
-    //std::cout << input[0] << std::endl;
-
-    if(input.size() != 0) {
-        for(int i = 0; i < input.size() - 1; i++) {
-            int lastCoordGrabbed = 0;
-
-            sf::Vector2f size = sf::Vector2f(0, 0);
-            sf::Vector2f position = sf::Vector2f(0, 0);
-            sf::Color color;
-            int isCol = 0;
-            int lvl = 1;
-            int stage = 1;
-
-            void* tmpPointer = &size.x;
-
-            for(int j = 0; j < input[i].size(); j++) {
-                if(input[i][j] == ',') {
-                    tmpPointer == &size.x ? tmpPointer = &size.y : tmpPointer = &position.y;
-                } else if(input[i][j] >= '0' && input[i][j] <= '9') {
-                    lastCoordGrabbed == 0 || lastCoordGrabbed == 1 ? *(float*)tmpPointer *= float(10), *(float*)tmpPointer += float(input[i][j] - '0'):0;
-                    lastCoordGrabbed >= 2 || lastCoordGrabbed <= 4  ? *(int*)tmpPointer *= 10, *(int*)tmpPointer += input[i][j] - '0':0;
-                } else if(input[i][j] == ')' && lastCoordGrabbed == 0) {
-                    lastCoordGrabbed++;
-                    tmpPointer = &position.x;
-                    continue;
-                } else if(input[i][j] == ')' && lastCoordGrabbed == 1) {
-                    lastCoordGrabbed++;
-                    tmpPointer = &color;
-                    continue;
-                } else if(input[i][j] == ')' && lastCoordGrabbed == 2) {
-                    lastCoordGrabbed++;
-                    tmpPointer = &isCol;
-                    continue;
-                } else if(input[i][j] == ')' && lastCoordGrabbed == 3) {
-                    lastCoordGrabbed++;
-                    tmpPointer = &lvl;
-                    continue;
-                } else if(input[i][j] == ')' && lastCoordGrabbed == 4) {
-                    lastCoordGrabbed++;
-                    tmpPointer = &stage;
-                    continue;
-                } else if(input[i][j] == ')' && lastCoordGrabbed == 5) {
-                    break;
-                }
-
-
-
-                //std::cout << input[i][j] << std::endl;
-            }
-
-            objs.push_back(LevelShape(size, position, sf::Color::White, 0, 1, 1));
-        }
-    }
-
-    //std::cout << size.x << " " << size.y << " " << position.x << " " << position.y << std::endl;
-
-    return objs;
-}*/

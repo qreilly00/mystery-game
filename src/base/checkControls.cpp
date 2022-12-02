@@ -14,8 +14,10 @@ bool Base::checkControls() {
                 currentStage == 2 ? currentStage = 1 : currentStage = 2;
             }*/
 
-            if (event.key.code == sf::Keyboard::Num0)
+            if (event.key.code == sf::Keyboard::Num0) {
                 buildMode == 0 ? buildMode = 1 : buildMode = 0;
+                mu.addCollidesCycle(collides, objects);
+            }
 
             if(buildMode == 1) {
                 if (event.key.code == sf::Keyboard::RBracket) {
@@ -28,10 +30,10 @@ bool Base::checkControls() {
 
         if (event.type == sf::Event::MouseButtonPressed) {
             if (event.mouseButton.button == sf::Mouse::Left) {
-                if(buildMode == 1 && mu.getIsObjectFarm() == 0)
+                if(buildMode == 1/* && mu.getIsObjectFarm() == 0*/)
                     objects.push_back(mu.leftMousePressed(window.mapPixelToCoords(sf::Mouse::getPosition(window))));
-                else if(buildMode == 1 && isObjectFarm == 1)
-                    farmObjects.push_back(mu.leftMousePressed(window.mapPixelToCoords(sf::Mouse::getPosition(window))));
+                /*else if(buildMode == 1 && mu.getIsObjectFarm() == 1)
+                    farmObjects.push_back(mu.leftMousePressedF(window.mapPixelToCoords(sf::Mouse::getPosition(window))));*/
             }
 
             if (event.mouseButton.button == sf::Mouse::Right) {
@@ -64,8 +66,6 @@ bool Base::checkControls() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         playerMoveAmount += sf::Vector2f(calculateFrameStep(), 0);
     }
-
-    //if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
 
     return 0;
 }

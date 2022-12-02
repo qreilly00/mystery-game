@@ -3,37 +3,33 @@
 
 #include "../inc/common.hpp"
 
-//#include "BasicUtils.hpp"
-//#include "TextureUtils.hpp"
-#include "TextUtils.hpp"
+#include "TextEntity.hpp"
 
 class HudUtils {
 private:
-    //BasicUtils ut;
-    //TextureUtils tu;
-    TextUtils txtu;
-
     sf::View hudView;
 
     int currentHud;
 
-    std::vector<std::vector<int> > textTokens;
-
+    //std::vector<TextEntity> hudText;
+    std::vector<std::vector<TextEntity> > textForEachHud;
+    //TextEntity txt;
 public:
 
     // Init class.
     HudUtils();
 
+    // General util functions.
     void initHudView(sf::RenderWindow&, sf::Vector2f);
+    void drawText(sf::RenderWindow& window) {for(auto x : textForEachHud[currentHud]) x.drawText(window);}
+    void drawText(sf::RenderWindow&, std::string);
+    TextEntity createTextEnt() {return TextEntity(sf::Color::White, sf::Vector2f(1000, 0), sf::Vector2f(.6f, .6f), "***");}
 
-    void drawText(sf::RenderWindow&);
-    void drawText(sf::RenderWindow&, std::string, int);
-    void addToken();
+    // Property get utils.
+    sf::View &getHudView() {return hudView;}
 
-    // Get and set.
-    sf::View &getHudView();
-
-    void setCurrentHud(int);
+    // Property set utils.
+    void setCurrentHud(int crnthd) {currentHud = crnthd;}
 
 };
 

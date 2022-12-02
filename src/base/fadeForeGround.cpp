@@ -3,27 +3,24 @@
 void Base::fadeForeGround() {
     for(int i = 0; i < objects.size(); i++) {
         if(objects[i].getIsForGround() == 1
-                && (ut.getRectCenter(objects[i].getShape()).x - window.mapPixelToCoords(sf::Mouse::getPosition(window)).x <= 256 && ut.getRectCenter(objects[i].getShape()).y - window.mapPixelToCoords(sf::Mouse::getPosition(window)).y <= 256)
-                && (ut.getRectCenter(objects[i].getShape()).x - window.mapPixelToCoords(sf::Mouse::getPosition(window)).x >= -256 && ut.getRectCenter(objects[i].getShape()).y - window.mapPixelToCoords(sf::Mouse::getPosition(window)).y >= -256)) {
+            && (ut.calcRectCenter(objects[i].getShape()).x - ut.calcRectCenter(player.getShape()).x <= 256 && ut.calcRectCenter(objects[i].getShape()).y - ut.calcRectCenter(player.getShape()).y <= 256)
+            && (ut.calcRectCenter(objects[i].getShape()).x - ut.calcRectCenter(player.getShape()).x >= -256 && ut.calcRectCenter(objects[i].getShape()).y - ut.calcRectCenter(player.getShape()).y >= -256))
+                /*&& (ut.calcRectCenter(objects[i].getShape()).x - window.mapPixelToCoords(sf::Mouse::getPosition(window)).x <= 256 && ut.calcRectCenter(objects[i].getShape()).y - window.mapPixelToCoords(sf::Mouse::getPosition(window)).y <= 256)
+                && (ut.calcRectCenter(objects[i].getShape()).x - window.mapPixelToCoords(sf::Mouse::getPosition(window)).x >= -256 && ut.calcRectCenter(objects[i].getShape()).y - window.mapPixelToCoords(sf::Mouse::getPosition(window)).y >= -256))*/ {
 
-            int xPos = ut.getRectCenter(objects[i].getShape()).x;
-            int yPos = ut.getRectCenter(objects[i].getShape()).y;
+            int xPos = ut.calcRectCenter(objects[i].getShape()).x;
+            int yPos = ut.calcRectCenter(objects[i].getShape()).y;
             if(xPos < 0) {xPos = -xPos;}
             if(yPos < 0) {yPos = -yPos;}
 
-            int xDiff = xPos - window.mapPixelToCoords(sf::Mouse::getPosition(window)).x;
-            int yDiff = yPos - window.mapPixelToCoords(sf::Mouse::getPosition(window)).y;
+            int xDiff = xPos - ut.calcRectCenter(player.getShape()).x;
+            int yDiff = yPos - ut.calcRectCenter(player.getShape()).y;
             if(xDiff < 32) {xDiff = -xDiff;}
             if(yDiff < 32) {yDiff = -yDiff;}
 
             int alpha;
             alpha = (xDiff + yDiff) <= 128 ? 0: (xDiff + yDiff);
 
-            /*if(xDiff < 256 && yDiff < 256) {
-                alpha = (xDiff + yDiff) / 2 <= 96 ? 0: (xDiff + yDiff) / 2;
-            }
-
-            int alpha =  (xDiff + yDiff) / 3 - 1;*/
             if(alpha < 0) {alpha = -alpha;}
             if(alpha > 255) {alpha = 255;}
             objects[i].getShape().setFillColor(sf::Color(objects[i].getShape().getFillColor().r, objects[i].getShape().getFillColor().g, objects[i].getShape().getFillColor().b, alpha));
@@ -31,17 +28,5 @@ void Base::fadeForeGround() {
             objects[i].getShape().setFillColor(sf::Color(objects[i].getShape().getFillColor().r, objects[i].getShape().getFillColor().g, objects[i].getShape().getFillColor().b, 255));
         }
     }
-    /*int xPos = ut.getRectCenter(objects[62].getShape()).x;
-    int yPos = ut.getRectCenter(objects[62].getShape()).y;
-    if(xPos < 0) {xPos = -xPos;}
-    if(yPos < 0) {yPos = -yPos;}
-
-    int x = xPos - window.mapPixelToCoords(sf::Mouse::getPosition(window)).x;
-    int y = yPos - window.mapPixelToCoords(sf::Mouse::getPosition(window)).y;
-    if(x < 0) {x = -x;}
-    if(y < 0) {y = -y;}
-    int alpha =  x + y - 1;
-    if(alpha < 0) {alpha = -alpha;}
-    std::cout << x << ", " << y << ", " << alpha << std::endl;*/
 
 }

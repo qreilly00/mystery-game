@@ -3,7 +3,6 @@
 sf::Vector2f MapUtils::designLevel(int lvl, std::vector<LevelShape>& rooms, std::vector<LevelShape>& corridors, std::vector<LevelShape>& roomWalls, std::vector<LevelShape>& corridorWalls) {
 
     // Rooms, Corridors (Higher, Mid and Lower).
-
     currentLevel = lvl;
 
     std::vector<std::string> fileNames = {"-rooms", "-corridors"/*"-corridors-higher", "-corridors-mid", "-corridors-lower"*/};
@@ -15,7 +14,7 @@ sf::Vector2f MapUtils::designLevel(int lvl, std::vector<LevelShape>& rooms, std:
         sf::Vector2f startSize;
 
         // Grab all lines from map-x-rooms.
-        map = ut.getFileLines("../maps/map-" + std::to_string(lvl) + fileNames[i]);
+        map = ut.readFileLines("../maps/map-" + std::to_string(lvl) + fileNames[i]);
 
         // Get start position and size for map-x-rooms.
         convertCoords(map[0], startPosition);

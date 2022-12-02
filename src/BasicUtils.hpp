@@ -9,20 +9,16 @@ private:
 	sf::Clock clock;
     sf::Time dt;
 	float dtAsSeconds;
+
+    void resetTime() {dt = clock.restart();dtAsSeconds = dt.asSeconds();};
 public:
-    // Init class.
-	BasicUtils();
-	~BasicUtils();
-
     // General util functions.
-    int getRandomInt(int x, int y);
-    sf::Vector2f getRectCenter(sf::RectangleShape);
-    void setTime();
-    std::vector<std::string> getFileLines(std::string);
+    int generateRandomInt(int x, int y);
+    sf::Vector2f calcRectCenter(sf::RectangleShape);
+    std::vector<std::string> readFileLines(std::string);
 
-    // Required for time util.
-    // Getter.
-	float getTime();
+    // Property get utils.
+	float getTime() {resetTime(); return dtAsSeconds;}
 };
 
 #endif

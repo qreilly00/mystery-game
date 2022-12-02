@@ -3,7 +3,7 @@
 void Base::drawWindow() {
     window.clear(sf::Color::Black);
 
-    view.setCenter(ut.getRectCenter(player.getShape()));
+    view.setCenter(ut.calcRectCenter(player.getShape()));
     window.setView(view);
 
     //std::cout << rooms[0].getStage();
@@ -20,7 +20,7 @@ void Base::drawWindow() {
         }
     }
 
-    for(auto x : corridorWalls) {
+    for(auto x : collides) {
         if(x.getLevel() == currentLevel && x.getStage() == currentStage) {
             window.draw(x.getShape());
         }
@@ -31,36 +31,27 @@ void Base::drawWindow() {
             window.draw(x.getShape());
         }
     }
-    for(auto x : farmObjects) {
+
+    window.draw(player.getShape());
+
+    /*for(auto x : farmObjects) {
         if(x.getLevel() == currentLevel && x.getStage() == currentStage) {
-            window.draw(x.getShape());
-        }
-    }
-
-    if(buildMode == 1) window.draw(mu.buildPointer(window.mapPixelToCoords(sf::Mouse::getPosition(window))));
-
-    /*for(auto x : roomWalls) {
-        if(x.getStage() == currentStage) {
             window.draw(x.getShape());
         }
     }*/
 
-    //for(auto x : collides) {window.draw(x.getShape());}
+    if(buildMode == 1) window.draw(mu.buildPointer(window.mapPixelToCoords(sf::Mouse::getPosition(window))));
 
-    /*for(auto x : corridorsHigher) {window.draw(x.getShape());}
-    for(auto x : corridorsMid) {window.draw(x.getShape());}
-    for(auto x : corridorsLower) {window.draw(x.getShape());}
-    //for(auto x : jigSawPieces) {}*/
-
-    window.draw(player.getShape());
 
     window.setView(hu.getHudView());
 
     // draw hud elements
-    std::stringstream ss;
-    ss << mu.getObjectVarName() << ": "<< mu.getObjectVarValue();
+    if(buildMode == 1) {
+        std::stringstream ss;
+        ss << mu.buildObjectVarName() << ": "<< mu.buildObjectVarValue();
 
-    hu.drawText(window, ss.str(), buildMode);
+        hu.drawText(window, ss.str());
+    }
 
     window.display();
 

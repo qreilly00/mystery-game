@@ -35,7 +35,6 @@ void MapUtils::createRoomWalls(std::vector<LevelShape>rooms, std::vector<LevelSh
             ) {
                 isRoomRight++;
             }
-            //std::cout << isRoomUp << std::endl;
         }
 
         if(isRoomUp == 0) {

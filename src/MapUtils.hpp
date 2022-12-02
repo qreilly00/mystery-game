@@ -8,7 +8,7 @@
 #include "LevelShape.hpp"
 #include "BasicUtils.hpp"
 #include "TextureUtils.hpp"
-#include "FarmablePlot.hpp"
+//#include "FarmablePlot.hpp"
 
 class MapUtils {
 private:
@@ -54,24 +54,29 @@ public:
     void createRoomWalls(std::vector<LevelShape>, std::vector<LevelShape>&);
 
     void fixRoomToCorridorWalls(std::vector<LevelShape>&, std::vector<LevelShape>);
-    void addCollides(std::vector<LevelShape>&, std::vector<LevelShape>);
+    void addCollides(std::vector<LevelShape>& collides, std::vector<LevelShape> source) {for(auto x : source) collides.push_back(x);}
+    void addCollidesCycle(std::vector<LevelShape>& collides, std::vector<LevelShape> source) {for(auto x : source) if(x.getIsCollidable()) collides.push_back(x);}
 
     // Visual editor functions.
-    LevelShape leftMousePressed(sf::Vector2f);
-    FarmablePlot leftMousePressed(sf::Vector2f);
-    sf::Vector2f rightMousePressed(sf::Vector2f);
+    LevelShape leftMousePressed(sf::Vector2f mousePos) {return LevelShape(objectSize, sf::Vector2f(int(mousePos.x) - (int(mousePos.x) % 32), int(mousePos.y) - (int(mousePos.y) % 32)), objectColor, objectCollidable, objectIsForGround, objectLevel, objectStage, &tu.getTextures()[CurrentTexture], CurrentTexture);}
+    //FarmablePlot leftMousePressedF(sf::Vector2f mousePos) {return FarmablePlot(objectSize, sf::Vector2f(int(mousePos.x) - (int(mousePos.x) % 32), int(mousePos.y) - (int(mousePos.y) % 32)), objectColor, objectCollidable, objectIsForGround, objectLevel, objectStage, &tu.getTextures()[CurrentTexture], CurrentTexture);}
+    sf::Vector2f rightMousePressed(sf::Vector2f mousePos) {return sf::Vector2f(int(mousePos.x) - (int(mousePos.x) % 32), int(mousePos.y) - (int(mousePos.y) % 32));}
     sf::RectangleShape& buildPointer(sf::Vector2f);
     void saveObjects(std::vector<LevelShape>);
     std::vector<LevelShape> loadObjects(int);
 
     // Required by visual editor functions.
-    void setCurrentObjectVar(int);
     void adjustObjectVar(bool);
+    std::string buildObjectVarName();
+    std::string buildObjectVarValue();
 
+    // Property set utils.
+    void setCurrentObjectVar(int varNumber) {CurrentObjectVar = varNumber;}
 
-    std::string getObjectVarName();
-    std::string getObjectVarValue();
-    bool getIsObjectFarm();
+    // Property get utils.
+    //bool getIsObjectFarm() {return isObjectFarm;}
+    std::vector<sf::Texture>& returnTextures() {return tu.getTextures();}
+    std::vector<std::string>& returnTextureNames() {return tu.getTextureNames();}
 };
 
 #endif
